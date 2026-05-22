@@ -1,0 +1,46 @@
+title: Gikls Wiki
+email: gikls69@gmail.com
+encoding: utf-8
+description: >-
+  Сайт для моей базы Obsidian и обмена информацией
+baseurl: ""
+domain: gikls.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
+url: https://gikls.github.io  # the base hostname and protocol for your site, e.g. http://example.com
+github_username:  gikls
+
+color_scheme: reading
+
+sass:
+  quiet_deps: true
+  silence_deprecations:
+    - import
+
+lsi: false
+safe: false
+plugins:
+  - jekyll-feed
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+# Поддержка Markdown в `_pages`
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"  # Использует `_layouts/page.html`
+
+creature_cards:
+  default_position: "right"
+  image_path: "/assets/images/creatures/"
+  enable_collapsible: true

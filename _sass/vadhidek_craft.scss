@@ -1,0 +1,733 @@
+// vadhidek_craft.scss
+// Стили модуля крафта Вад-Хидека (адаптированы под Just The Docs & тёмную тему)
+
+$primary-color: $grey-dk-300;
+$secondary-color: $grey-dk-200;
+$card-bg: rgba(255, 255, 255, 0.05);
+$card-hover: rgba(255, 255, 255, 0.08);
+$text-color: $grey-lt-300;
+$text-muted: rgba(255, 255, 255, 0.6);
+$accent-color: #ffd700;
+$success-color: #4caf50;
+$danger-color: #ff6b6b;
+$info-color: #2196f3;
+$border-color: rgba(255, 255, 255, 0.12);
+$border-radius: 12px;
+$transition: 0.25s ease;
+
+.vadhidek-module {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: $primary-color;
+  border-radius: $border-radius;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  color: $text-color;
+  font-family: $body-font-family;
+
+  // === HEADER ===
+  .vadhidek-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $border-color;
+
+    .vadhidek-title {
+      margin: 0;
+      font-size: 2rem;
+      color: $accent-color;
+    }
+
+    .vadhidek-search-bar {
+      display: flex;
+      gap: 0.5rem;
+
+      .vadhidek-search-input {
+        padding: 0.6rem 1rem;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        background: $card-bg;
+        color: $text-color;
+        font-size: 0.95rem;
+        min-width: 250px;
+        outline: none;
+        transition: $transition;
+
+        &:focus {
+          border-color: $accent-color;
+          box-shadow: 0 0 0 2px rgba($accent-color, 0.2);
+        }
+
+        &::placeholder {
+          color: $text-muted;
+        }
+      }
+
+      .vadhidek-search-btn {
+        padding: 0.6rem 1rem;
+        background: transparent;
+        border: 1px solid $accent-color;
+        color: $accent-color;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+          background: $accent-color;
+          color: #000;
+        }
+      }
+    }
+  }
+
+  // === LAYOUT ===
+  .vadhidek-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .vadhidek-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .vadhidek-categories-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 60vh;
+      overflow-y: auto;
+      padding-right: 8px;
+
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $border-color;
+        border-radius: 3px;
+      }
+
+      .vadhidek-category-btn {
+        padding: 0.8rem 1rem;
+        background: $card-bg;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: $text-color;
+        cursor: pointer;
+        text-align: left;
+        transition: $transition;
+        font-size: 0.95rem;
+
+        &:hover {
+          background: $card-hover;
+          border-color: $border-color;
+        }
+
+        &.active {
+          background: rgba($accent-color, 0.15);
+          border-color: $accent-color;
+          color: $accent-color;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .vadhidek-inventory-panel {
+      background: $card-bg;
+      border-radius: 8px;
+      padding: 1rem;
+      border: 1px solid $border-color;
+
+      h3 {
+        margin-top: 0;
+        color: $accent-color;
+        font-size: 1.1rem;
+      }
+
+      .vadhidek-empty-inventory {
+        color: $text-muted;
+        text-align: center;
+        padding: 1rem 0;
+        font-size: 0.9rem;
+      }
+
+      .vadhidek-inventory-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .vadhidek-inventory-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        font-size: 0.9rem;
+
+        .vadhidek-remove-btn {
+          background: transparent;
+          border: none;
+          color: $danger-color;
+          cursor: pointer;
+          font-size: 1.2rem;
+          padding: 0 0.3rem;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+
+      .vadhidek-clear-btn {
+        width: 100%;
+        margin-top: 0.8rem;
+        padding: 0.6rem;
+        background: transparent;
+        border: 1px solid $danger-color;
+        color: $danger-color;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+          background: $danger-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .vadhidek-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .vadhidek-items-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      max-height: 40vh;
+      overflow-y: auto;
+      padding-right: 8px;
+
+      .vadhidek-item-card {
+        background: $card-bg;
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+        padding: 1rem;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+          border-color: rgba($accent-color, 0.3);
+        }
+
+        .vadhidek-item-header h3 {
+          margin: 0 0 0.5rem;
+          color: #fff;
+          font-size: 1.1rem;
+        }
+
+        .vadhidek-item-meta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .vadhidek-dc,
+        .vadhidek-time,
+        .vadhidek-price {
+          padding: 0.2rem 0.6rem;
+          background: rgba(0, 0, 0, 0.3);
+          border-radius: 20px;
+          font-size: 0.8rem;
+          color: $text-muted;
+        }
+
+        .vadhidek-dc {
+          border: 1px solid $info-color;
+          color: $info-color;
+        }
+
+        .vadhidek-item-preview {
+          display: flex;
+          justify-content: space-between;
+          font-size: 0.85rem;
+          color: $text-muted;
+
+          .vadhidek-ingredients-count {
+            color: $accent-color;
+          }
+        }
+      }
+    }
+
+    .vadhidek-recipe-detail {
+      background: $secondary-color;
+      border-radius: $border-radius;
+      padding: 1.5rem;
+      border: 1px solid $border-color;
+      min-height: 300px;
+      animation: fadeIn 0.3s ease;
+
+      .vadhidek-placeholder {
+        text-align: center;
+        color: $text-muted;
+        padding: 4rem 0;
+      }
+
+      .vadhidek-recipe-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid $border-color;
+
+        h2 {
+          margin: 0 0 0.5rem;
+          color: $accent-color;
+          font-size: 1.8rem;
+        }
+
+        .vadhidek-recipe-meta {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
+      }
+
+      .vadhidek-tier,
+      .vadhidek-type,
+      .vadhidek-dc,
+      .vadhidek-time {
+        padding: 0.25rem 0.7rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .vadhidek-tier-novice {
+        background: #333;
+        color: #aaa;
+        border: 1px solid #444;
+      }
+
+      .vadhidek-tier-journeyman {
+        background: rgba(46, 125, 50, 0.3);
+        color: #81c784;
+        border: 1px solid #388e3c;
+      }
+
+      .vadhidek-tier-master {
+        background: rgba(21, 101, 192, 0.3);
+        color: #64b5f6;
+        border: 1px solid #1976d2;
+      }
+
+      .vadhidek-tier-grandmaster {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+        color: $accent-color;
+        border: 1px solid $accent-color;
+      }
+
+      .vadhidek-type-component {
+        background: rgba(92, 107, 192, 0.2);
+        color: #9fa8da;
+      }
+
+      .vadhidek-type-weapon {
+        background: rgba(198, 40, 40, 0.2);
+        color: #ef9a9a;
+      }
+
+      .vadhidek-type-armor {
+        background: rgba(0, 131, 143, 0.2);
+        color: #80deea;
+      }
+
+      .vadhidek-type-elder_race {
+        background: rgba(106, 27, 154, 0.2);
+        color: #ce93d8;
+      }
+
+      .vadhidek-type-armor_upgrade {
+        background: rgba(255, 152, 0, 0.2);
+        color: #ffcc80;
+      }
+
+      .vadhidek-type-ammo {
+        background: rgba(96, 125, 139, 0.2);
+        color: #b0bec5;
+      }
+
+      .vadhidek-material-detail {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+      }
+
+      .vadhidek-material-info p {
+        margin: 0.3rem 0;
+      }
+
+      .vadhidek-ingredients-section {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 3px solid $accent-color;
+      }
+
+      .vadhidek-ingredients-title {
+        margin: 0 0 1rem 0;
+        color: $accent-color;
+        font-size: 1.2rem;
+      }
+
+      .vadhidek-ingredients-content {
+        margin-bottom: 1rem;
+      }
+
+      .vadhidek-crafting-time {
+        padding-top: 0.5rem;
+        border-top: 1px solid $border-color;
+        color: $text-muted;
+      }
+
+      .vadhidek-inventory-status {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .vadhidek-available {
+        background: rgba(76, 175, 80, 0.15);
+        color: $success-color;
+        border: 1px solid rgba(76, 175, 80, 0.3);
+      }
+
+      .vadhidek-missing {
+        background: rgba(255, 107, 107, 0.15);
+        color: $danger-color;
+        border: 1px solid rgba(255, 107, 107, 0.3);
+      }
+
+      .vadhidek-recipe-tree {
+        margin: 1.5rem 0;
+      }
+
+      .vadhidek-recipe-node {
+        padding: 0.5rem 0.5rem 0.5rem 1rem;
+        border-left: 2px solid $border-color;
+        margin: 0.5rem 0;
+        position: relative;
+
+        &.vadhidek-has-recipe {
+          border-color: $accent-color;
+        }
+
+        &.vadhidek-material {
+          border-color: $info-color;
+        }
+      }
+
+      .vadhidek-node-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: default;
+
+        .vadhidek-toggle-recipe {
+          background: none;
+          border: none;
+          color: $accent-color;
+          cursor: pointer;
+          font-size: 1rem;
+          padding: 0;
+          width: 20px;
+          transition: $transition;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+
+        .vadhidek-toggle-recipe.vadhidek-hidden {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .vadhidek-node-name {
+          font-weight: 500;
+          color: #fff;
+        }
+
+        .vadhidek-node-type {
+          font-size: 0.75rem;
+          padding: 0.1rem 0.4rem;
+          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        .vadhidek-node-type.vadhidek-material {
+          background: rgba($info-color, 0.2);
+          color: $info-color;
+        }
+
+        .vadhidek-node-quantity {
+          color: $accent-color;
+          font-weight: bold;
+        }
+
+        .vadhidek-in-inventory {
+          color: $success-color;
+          font-size: 0.85rem;
+          margin-left: auto;
+        }
+      }
+
+      .vadhidek-node-preview {
+        font-size: 0.85rem;
+        color: $text-muted;
+        margin-top: 0.2rem;
+        margin-left: 20px;
+      }
+
+      .vadhidek-node-children {
+        margin-left: 20px;
+      }
+
+      .vadhidek-recipe-summary {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+
+        .vadhidek-summary-block h4 {
+          margin: 0 0 0.3rem;
+          color: $text-muted;
+          font-size: 0.9rem;
+        }
+
+        .vadhidek-total-price {
+          color: $accent-color;
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+
+        .vadhidek-total-time {
+          color: #90caf9;
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+      }
+
+      .vadhidek-materials-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .vadhidek-material-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 6px;
+        font-size: 0.9rem;
+
+        &.vadhidek-available {
+          border-left: 3px solid $success-color;
+        }
+
+        &.vadhidek-missing {
+          border-left: 3px solid $danger-color;
+        }
+
+        .vadhidek-material-name {
+          color: #fff;
+          font-weight: 500;
+        }
+
+        .vadhidek-material-price {
+          color: $text-muted;
+          font-size: 0.85rem;
+        }
+
+        .vadhidek-material-have {
+          color: $success-color;
+          font-size: 0.85rem;
+        }
+
+        .vadhidek-material-missing {
+          color: $danger-color;
+          font-size: 0.85rem;
+        }
+
+        .vadhidek-add-btn {
+          margin-left: auto;
+          padding: 0.3rem 0.6rem;
+          background: $accent-color;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          color: #000;
+          font-size: 0.8rem;
+          transition: $transition;
+
+          &:hover {
+            transform: scale(1.05);
+            background: #ffcc00;
+          }
+        }
+      }
+
+      .vadhidek-recipe-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .vadhidek-btn {
+        padding: 0.7rem 1.2rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: $transition;
+
+        &.vadhidek-btn-primary {
+          background: $accent-color;
+          color: #000;
+
+          &:hover {
+            background: #ffcc00;
+            box-shadow: 0 4px 12px rgba($accent-color, 0.3);
+          }
+        }
+
+        &.vadhidek-btn-secondary {
+          background: transparent;
+          border: 1px solid $text-color;
+          color: $text-color;
+
+          &:hover {
+            background: $card-hover;
+          }
+        }
+      }
+    }
+  }
+}
+
+.vadhidek-gathering-table {
+  max-width: 600px;
+  margin: 0.5rem auto;
+  overflow-x: auto;
+  font-size: 0.75rem;
+
+  .vadhidek-table-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    text-align: center;
+  }
+
+  .vadhidek-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+    table-layout: fixed;
+
+    th,
+    td {
+      padding: 0.2rem 0.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 80px;
+      vertical-align: middle;
+    }
+
+    th {
+      font-weight: 600;
+      font-size: 0.65rem;
+      padding: 0.25rem 0.2rem;
+      white-space: normal;
+      line-height: 1.1;
+      min-width: 40px;
+    }
+
+    td {
+      background: rgba(255, 255, 255, 0.05);
+      line-height: 1.2;
+    }
+
+    th:first-child,
+    td:first-child {
+      min-width: 60px;
+      max-width: 100px;
+    }
+
+
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// Адаптивность для маленьких экранов
+@media (max-width: 650px) {
+  .vadhidek-gathering-table {
+    font-size: 0.65rem;
+
+    .vadhidek-data-table {
+      th,
+      td {
+        padding: 0.15rem 0.2rem;
+        font-size: 0.6rem;
+        max-width: 60px;
+      }
+
+      th:first-child,
+      td:first-child {
+        min-width: 50px;
+        max-width: 80px;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

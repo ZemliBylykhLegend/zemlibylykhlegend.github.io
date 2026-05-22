@@ -1,0 +1,898 @@
+categories:
+  - { id: 'gathering', name: '📦 Добыча ресурсов' }
+  - { id: 'weapons_armor', name: '⚔️ Оружие и Броня' }
+  - { id: 'alchemy', name: '⚗️ Алхимия' }
+  - { id: 'traps_tools', name: '🪤 Ловушки и Инструменты' }
+
+# Маппинг элементов к травам для алхимии
+alchemy_elements:
+  Н:
+    name: "Начало"
+    property: "Лечебные свойства"
+    herbs: ["herb_kasun", "herb_alta_tymy", "herb_mokrets", "herb_baldyrgan"]
+  К:
+    name: "Конец"
+    property: "Негативные свойства"
+    herbs: ["herb_sporysh", "herb_nullims", "herb_jatash", "herb_shulims", "herb_baldyrgan"]
+  Р:
+    name: "Рост"
+    property: "Стимуляция/Отравление"
+    herbs: ["herb_nullims", "herb_shormos", "herb_buuldu", "herb_jatash", "herb_mokrets", "herb_shulims"]
+  М:
+    name: "Материя"
+    property: "Духовная сила"
+    herbs: ["herb_nullims", "herb_molodilo", "herb_mokrets", "herb_shulims", "herb_baldyrgan"]
+
+gathering_tables:
+  butchering:
+    name: "Таблица разделки существ"
+    headers: ["Размер", "Мясо", "10-12", "13-15", "16-18", "19-22", "23+", "Время"]
+    short_headers: ["Разм", "Мясо", "10-12", "13-15", "16-18", "19-22", "23+", "Время"]
+    rows:
+      - ["Крошечный", "–", "–", "–", "1 малый", "2 малых", "3 малых", "15 мин."]
+      - ["Маленький", "1", "–", "–", "1 малый", "2 малых", "3 малых", "30 мин."]
+      - ["Средний", "4", "–", "1 малый", "1 малый 1 средний", "2 малых 1 средний", "2 малых 2 средних", "1 час"]
+      - ["Большой", "8", "1 малый", "1 малый 1 средний", "1 малый 1 средний 1 крупный", "2 малых 1 средний 1 крупный", "2 малых 2 средних 1 крупный", "2 часа"]
+      - ["Огромный", "16", "1 малый 1 средний", "2 малых 2 средних 1 крупный", "3 малых 2 средних 2 крупных", "3 малых 3 средних 2 крупных", "4 малых 4 средних 3 крупных", "4 часа"]
+      - ["Громадный", "32", "1 малый 1 средний 1 крупный", "4 малых 4 средних 2 крупных", "6 малых 4 средних 4 крупных", "6 малых 6 средних 4 крупных", "8 малых 8 средних 6 крупных", "8 часов"]
+# === ШАХТЁРСТВО ===
+  vein_iron_copper:
+    name: "Добыча железа и меди из жилы"
+    headers: ["Объём жилы", "1к20", "Макс. проверок", "Фунтов за успех"]
+    short_headers: ["Жила", "1к20", "Проверок", "Фунтов"]
+    rows:
+      - ["Скудная", "1-10", "1", "1к4"]
+      - ["Обильная", "11-17", "3", "2к4+2"]
+      - ["Богатая", "18-20", "5", "3к4+2"]
+
+  vein_gold_silver:
+    name: "Добыча золота и серебра из жилы"
+    headers: ["Объём жилы", "1к20", "Макс. проверок", "Фунтов за успех"]
+    short_headers: ["Жила", "1к20", "Проверок", "Фунтов"]
+    rows:
+      - ["Скудная", "1-10", "1", "1к4"]
+      - ["Обильная", "11-17", "2", "1к4+2"]
+      - ["Богатая", "18-20", "4", "2к4+2"]
+
+  vein_ayang_shulay:
+    name: "Добыча аянга и шулая из жилы"
+    headers: ["Объём жилы", "1к20", "Макс. проверок", "Фунтов за успех"]
+    short_headers: ["Жила", "1к20", "Проверок", "Фунтов"]
+    rows:
+      - ["Скудная", "1-10", "1", "1к4"]
+      - ["Обильная", "11-17", "2", "1к4+1"]
+      - ["Богатая", "18-20", "4", "2к4+1"]
+
+  vein_nasakh:
+    name: "Добыча насаха из жилы"
+    headers: ["Объём жилы", "1к20", "Макс. проверок", "Фунтов за успех"]
+    short_headers: ["Жила", "1к20", "Проверок", "Фунтов"]
+    rows:
+      - ["Скудная", "1-10", "1", "1"]
+      - ["Обильная", "11-17", "2", "1к4"]
+      - ["Богатая", "18-20", "4", "1к4+2"]
+
+  smelting:
+    name: "Переплавка и обработка"
+    headers: ["Материал", "Вид работы", "Инструменты", "СЛ", "Руды на 1 ед."]
+    short_headers: ["Матер", "Работа", "Инстр", "СЛ", "Руда"]
+    rows:
+      - ["Единица меди", "Переплавка", "Кузнеца", "12", "4"]
+      - ["Единица железа", "Переплавка", "Кузнеца", "14", "2"]
+      - ["Единица золота", "Обработка", "Ювелира", "12", "4"]
+      - ["Единица серебра", "Обработка", "Ювелира", "14", "2"]
+      - ["Единица аянга", "Обработка", "Ювелира", "16", "1"]
+      - ["Единица шулая", "Обработка", "Ювелира", "16", "1"]
+      - ["Единица насаха", "Переплавка", "Кузнеца", "18", "1"]
+
+  hiyal_bones:
+    name: "Получение костей Хияла"
+    headers: ["Результат проверки", "Количество костей"]
+    short_headers: ["Проверка", "Костей"]
+    rows:
+      - ["10-12", "2"]
+      - ["13-15", "4"]
+      - ["16-18", "6"]
+      - ["19-22", "8"]
+      - ["23+", "10"]
+
+  herbs_plains:
+    name: "Растения на равнинах"
+    headers: ["Растение", "Редк", "1к20"]
+    short_headers: ["Растение", "Р", "1к20"]
+    rows:
+      - ["Спорыш", "О", "1-5"]
+      - ["Шормос", "О", "6-10"]
+      - ["Буулду", "О", "11-15"]
+      - ["Аракадский хвост", "Н", "16-20"]
+
+  herbs_swamp:
+    name: "Растения в болотистой местности"
+    headers: ["Растение", "Редк", "1к20"]
+    short_headers: ["Растение", "Р", "1к20"]
+    rows:
+      - ["Птичий след", "Н", "1-13"]
+      - ["Кога", "Н", "14-17"]
+      - ["Нулимс", "Р", "18-20"]
+
+  herbs_forest:
+    name: "Растения в лесах"
+    headers: ["Растение", "Редк", "1к20"]
+    short_headers: ["Растение", "Р", "1к20"]
+    rows:
+      - ["Листья касуна", "О", "1-6"]
+      - ["Лесной певец", "О", "7-12"]
+      - ["Сарвидские уши", "Н", "13-16"]
+      - ["Шулимс", "Р", "17-20"]
+
+  herbs_mountains:
+    name: "Растения в горах"
+    headers: ["Растение", "Редк", "1к20"]
+    short_headers: ["Растение", "Р", "1к20"]
+    rows:
+      - ["Жаташ", "Н", "1-8"]
+      - ["Алта-тьмы", "О", "9-13"]
+      - ["Молодило", "О", "14-17"]
+      - ["Сломанное ребро", "Н", "18-20"]
+
+  herbs_omolon:
+    name: "Растения Омолона"
+    headers: ["Растение", "Редк", "1к20"]
+    short_headers: ["Растение", "Р", "1к20"]
+    rows:
+      - ["Балдырган", "ОР", "16-20"]
+
+  herbs_rivers:
+    name: "Растения у рек и озёр"
+    headers: ["Растение", "Редк", "1к20"]
+    short_headers: ["Растение", "Р", "1к20"]
+    rows:
+      - ["Яп-яп", "О", "1-5"]
+      - ["Пучка", "О", "6-10"]
+      - ["Жаташ", "Н", "11-14"]
+      - ["Кога", "Н", "15-18"]
+      - ["Мокрец", "Р", "19-20"]
+
+  herbs_caves:
+    name: "Растения в пещерах"
+    headers: ["Растение", "Редк", "1к20"]
+    short_headers: ["Растение", "Р", "1к20"]
+    rows:
+      - ["Буулду", "О", "1-11"]
+      - ["Лепту", "Р", "12-17"]
+      - ["Люмут", "ОР", "18-20"]
+
+materials:
+  trophy_small:
+    name: "Малый трофей"
+    gathering_method: "butchering"
+  trophy_medium:
+    name: "Средний трофей"
+    gathering_method: "butchering"
+  trophy_large:
+    name: "Крупный трофей"
+    gathering_method: "butchering"
+  hiyal_bone:
+    name: "Кость Хияла"
+    gathering_method: "hiyal_bones"
+  # Самоцветы (получаются обработкой)
+  gem_gold:
+    name: "Единица золота"
+    gathering_method: "smelting"
+  gem_silver:
+    name: "Единица серебра"
+    gathering_method: "smelting"
+  gem_ayang:
+    name: "Единица аянга"
+    gathering_method: "smelting"
+  gem_shulay:
+    name: "Единица шулая"
+    gathering_method: "smelting"
+  metal_nasakh:
+    name: "Единица насаха"
+    gathering_method: "smelting"
+  # Металлы (получаются переплавкой)
+  metal_copper:
+    name: "Единица меди"
+    gathering_method: "smelting"
+  metal_iron:
+    name: "Единица железа"
+    gathering_method: "smelting"
+  gem_gold:
+    name: "Единица золота"
+    gathering_method: "smelting"
+  gem_silver:
+    name: "Единица серебра"
+    gathering_method: "smelting"
+  gem_ayang:
+    name: "Единица аянга"
+    gathering_method: "smelting"
+  gem_shulay:
+    name: "Единица шулая"
+    gathering_method: "smelting"
+  metal_nasakh:
+    name: "Единица насаха"
+    gathering_method: "smelting"
+  # Руды (добываются в жилах)
+  ore_copper:
+    name: "Медная руда"
+    gathering_method: "vein_iron_copper"
+  ore_iron:
+    name: "Железная руда"
+    gathering_method: "vein_iron_copper"
+  ore_gold:
+    name: "Золотая руда"
+    gathering_method: "vein_gold_silver"
+  ore_silver:
+    name: "Серебряная руда"
+    gathering_method: "vein_gold_silver"
+  ore_ayang:
+    name: "Аянг"
+    gathering_method: "vein_ayang_shulay"
+  ore_shulay:
+    name: "Шулай"
+    gathering_method: "vein_ayang_shulay"
+  ore_nasakh:
+    name: "Насах"
+    gathering_method: "vein_nasakh"
+  # Разное
+  rope:
+    name: "Веревка"
+  # Травы
+  herb_sporysh:
+    name: "Спорыш"
+    gathering_method: ["herbs_plains"]
+    elements: ["К"]
+  herb_kasun:
+    name: "Листья касуна"
+    gathering_method: ["herbs_forest"]
+    elements: ["Н"]
+  herb_nullims:
+    name: "Нулимс"
+    gathering_method: ["herbs_swamp"]
+    elements: ["К", "Р", "М"]
+  herb_shormos:
+    name: "Шормос"
+    gathering_method: ["herbs_plains"]
+    elements: ["Р"]
+  herb_buuldu:
+    name: "Буулду"
+    gathering_method: ["herbs_plains", "herbs_caves"]
+    elements: ["Р"]
+  herb_alta_tymy:
+    name: "Алта-тьмы"
+    gathering_method: ["herbs_mountains"]
+    elements: ["Н"]
+  herb_molodilo:
+    name: "Молодило"
+    gathering_method: ["herbs_mountains"]
+    elements: ["М"]
+  herb_jatash:
+    name: "Жаташ"
+    gathering_method: ["herbs_mountains", "herbs_rivers"]
+    elements: ["К", "Р"]
+  herb_mokrets:
+    name: "Мокрец"
+    gathering_method: ["herbs_rivers"]
+    elements: ["Н", "Р", "М"]
+  herb_shulims:
+    name: "Шулимс"
+    gathering_method: ["herbs_forest"]
+    elements: ["К", "Р", "М"]
+  herb_baldyrgan:
+    name: "Балдырган"
+    gathering_method: ["herbs_omolon"]
+    elements: ["Н", "К", "М"]
+  herb_yap_yap:
+    name: "Яп-яп"
+    gathering_method: ["herbs_rivers"]
+    elements: ["Р"]
+  herb_puchka:
+    name: "Пучка"
+    gathering_method: ["herbs_rivers"]
+    elements: ["М"]
+  herb_leptu:
+    name: "Лепту"
+    gathering_method: ["herbs_caves"]
+    elements: ["К", "М"]
+  herb_lyumut:
+    name: "Люмут"
+    gathering_method: ["herbs_caves"]
+    elements: ["К", "Р", "М"]
+
+recipes:
+  # === ОРУЖИЕ ===
+  weapon_simple:
+    name: "Простое оружие"
+    type: "weapon"
+    dc: 12
+    tool: "Резчика"
+    time: "1 час"
+    ingredients: [{ item: "trophy_small", quantity: 2 }, { item: "trophy_medium", quantity: 1 }]
+    description: "Алхимическое, Заточенное, Затупленное, Кровотечение, Прокалывающее, Ритуальное, Рунное, Сбалансированное, Сокрушительное, Цепкое"
+
+  weapon_martial:
+    name: "Воинское оружие"
+    type: "weapon"
+    dc: 14
+    tool: "Кузнеца"
+    time: "1 час"
+    ingredients: [{ item: "trophy_medium", quantity: 2 }, { item: "metal_iron", quantity: 1 }]
+    description: "Алхимическое, Заточенное, Затупленное, Кровотечение, Прокалывающее, Ритуальное, Рунное, Сбалансированное, Сокрушительное, Цепкое"
+
+  # === ОРУЖИЕ ИЗ КОСТИ ХИЯЛА ===
+  weapon_hiyal_simple:
+    name: "Магическое простое оружие (Хиял)"
+    type: "weapon_magic"
+    dc: 18
+    tool: "Резчика"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_medium", quantity: 6 }, { item: "metal_iron", quantity: 2 }, { item: "hiyal_bone", quantity: 2 }]
+    description: "Магический бонус +1, Малое положительное свойство"
+
+  weapon_hiyal_martial:
+    name: "Магическое воинское оружие (Хиял)"
+    type: "weapon_magic"
+    dc: 20
+    tool: "Резчика"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_medium", quantity: 4 }, { item: "metal_iron", quantity: 3 }, { item: "hiyal_bone", quantity: 3 }]
+    description: "Магический бонус +1, Малое положительное свойство"
+
+  # === ОРУЖИЕ ИЗ НАСАХА ===
+  weapon_nasakh_simple:
+    name: "Магическое простое оружие (Насах)"
+    type: "weapon_magic"
+    dc: 18
+    tool: "Кузнеца"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_medium", quantity: 6 }, { item: "metal_iron", quantity: 2 }, { item: "metal_nasakh", quantity: 1 }]
+    description: "Магический бонус +2, Основное положительное свойство"
+
+  weapon_nasakh_martial:
+    name: "Магическое воинское оружие (Насах)"
+    type: "weapon_magic"
+    dc: 22
+    tool: "Кузнеца"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_medium", quantity: 4 }, { item: "metal_iron", quantity: 4 }, { item: "metal_nasakh", quantity: 2 }]
+    description: "Магический бонус +2, Основное положительное свойство"
+
+  # === БРОНЯ ===
+  armor_light:
+    name: "Лёгкие доспехи"
+    type: "armor"
+    dc: 12
+    tool: "Резчика"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_medium", quantity: 3 }, { item: "trophy_small", quantity: 3 }]
+    description: "Укреплённая, Облегчённый, Хорошо сидит, Пластичный"
+
+  armor_medium:
+    name: "Средний доспех"
+    type: "armor"
+    dc: 14
+    tool: "Кузнеца"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_large", quantity: 1 }, { item: "trophy_medium", quantity: 3 }, { item: "metal_iron", quantity: 1 }]
+    description: "Укреплённая, Облегчённый, Хорошо сидит, Пластичный"
+
+  armor_heavy:
+    name: "Тяжёлый доспех"
+    type: "armor"
+    dc: 16
+    tool: "Кузнеца"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_large", quantity: 1 }, { item: "trophy_medium", quantity: 4 }, { item: "metal_iron", quantity: 3 }]
+    description: "Укреплённая, Облегчённый, Хорошо сидит, Пластичный"
+
+  # === БРОНЯ ИЗ КОСТИ ХИЯЛА ===
+  armor_hiyal_light:
+    name: "Лёгкие магические доспехи (Хиял)"
+    type: "armor_magic"
+    dc: 18
+    tool: "Резчика"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_medium", quantity: 6 }, { item: "metal_iron", quantity: 2 }, { item: "hiyal_bone", quantity: 2 }]
+    description: "Магический бонус +1, Малое положительное свойство"
+
+  armor_hiyal_medium:
+    name: "Средние магические доспехи (Хиял)"
+    type: "armor_magic"
+    dc: 20
+    tool: "Резчика"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_medium", quantity: 6 }, { item: "metal_iron", quantity: 4 }, { item: "hiyal_bone", quantity: 2 }]
+    description: "Магический бонус +1, Малое положительное свойство"
+
+  # === БРОНЯ ИЗ НАСАХА ===
+  armor_nasakh_light:
+    name: "Лёгкие магические доспехи (Насах)"
+    type: "armor_magic"
+    dc: 18
+    tool: "Кузнеца"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_large", quantity: 3 }, { item: "metal_iron", quantity: 4 }, { item: "metal_nasakh", quantity: 2 }]
+    description: "Магический бонус +2, Основное положительное свойство"
+
+  armor_nasakh_medium:
+    name: "Средние магические доспехи (Насах)"
+    type: "armor_magic"
+    dc: 22
+    tool: "Кузнеца"
+    time: "4 часа"
+    ingredients: [{ item: "trophy_large", quantity: 2 }, { item: "metal_iron", quantity: 3 }, { item: "metal_nasakh", quantity: 4 }]
+    description: "Магический бонус +2, Основное положительное свойство"
+
+  # === ЗЕЛЬЯ ===
+  potion_blessing_illu:
+    name: "Благословение Иллу"
+    type: "potion"
+    dc: 19
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "К", quantity: 5 }]
+    description: "Снимает эффект «отравление», «паралич», «окаменение»"
+
+  potion_second_life:
+    name: "Вторая жизнь"
+    type: "potion"
+    dc: 15
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 3 }]
+    description: "Восстанавливает 4к4+4к6+6 хитов"
+
+  potion_maavki_breath:
+    name: "Дыхание мавки"
+    type: "potion"
+    dc: 13
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 1 }, { item: "М", quantity: 1 }]
+    description: "Позволяет обходиться без дыхания 1 минуту"
+
+  potion_giant_blood:
+    name: "Зелье великаньей крови"
+    type: "potion"
+    dc: 13
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "М", quantity: 2 }]
+    description: "Увеличивает ваш размер на 1 категорию и даёт сопротивление к холоду на 1 раунд"
+
+  potion_domination:
+    name: "Зелье господства"
+    type: "potion"
+    dc: 17
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 2 }, { item: "М", quantity: 1 }, { item: "Н", quantity: 1 }]
+    description: "Восстанавливает 4к4+2 хитов. Даёт свойство «полёт» на 1 минуту"
+
+  potion_trainer:
+    name: "Зелье дрессировщика"
+    type: "potion"
+    dc: 15
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 2 }, { item: "М", quantity: 1 }]
+    description: "Восстанавливает 4к6+4 хитов. Даёт сопротивление к колющему урону на 1 ход"
+
+  potion_healer:
+    name: "Зелье знахарки"
+    type: "potion"
+    dc: 17
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "К", quantity: 2 }, { item: "М", quantity: 2 }]
+    description: "Снимает эффект «паралич» и даёт иммунитет к яду на 1 ход"
+
+  potion_impenetrable_skin:
+    name: "Зелье непробиваемой шкуры"
+    type: "potion"
+    dc: 19
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "К", quantity: 1 }, { item: "Р", quantity: 2 }, { item: "М", quantity: 2 }]
+    description: "Снимает эффект «отравление» и даёт иммунитет к рубящему урону на 1 минуту"
+
+  potion_dense_skin:
+    name: "Зелье плотной шкуры"
+    type: "potion"
+    dc: 19
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 2 }, { item: "М", quantity: 3 }]
+    description: "Даёт сопротивление к дробящему, колющему и рубящему урону на 1 минуту"
+
+  potion_endurance:
+    name: "Зелье стойкости"
+    type: "potion"
+    dc: 15
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 1 }, { item: "М", quantity: 2 }]
+    description: "Восстанавливает 4к4+2 хитов и накладывает сопротивление к дробящему и режущему урону"
+
+  potion_predator:
+    name: "Зелье хищника"
+    type: "potion"
+    dc: 15
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 2 }, { item: "М", quantity: 1 }]
+    description: "На 1 минуту наделяет персонажа тёмным зрением"
+
+  potion_mothers_caress:
+    name: "Ласка матери"
+    type: "potion"
+    dc: 13
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 2 }]
+    description: "Восстанавливает 4к6+4 хитов"
+
+  potion_khotulai_agility:
+    name: "Ловкость хотулая"
+    type: "potion"
+    dc: 17
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "М", quantity: 2 }, { item: "Р", quantity: 2 }]
+    description: "Уменьшает ваш размер на 2 категории на 1 минуту"
+
+  potion_rakhnu_charm:
+    name: "Оберег Рахну"
+    type: "potion"
+    dc: 17
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 1 }, { item: "М", quantity: 3 }]
+    description: "На 2 раунда вы получаете сопротивление огню, холоду и электричеству"
+
+  potion_cleansing:
+    name: "Очищение"
+    type: "potion"
+    dc: 17
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 2 }, { item: "К", quantity: 2 }]
+    description: "Восстанавливает 4к6+4 хитов, снимает эффекты «отравление» и «слепота»"
+
+  potion_munke_salvation:
+    name: "Спасение мунке"
+    type: "potion"
+    dc: 17
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 4 }]
+    description: "Восстанавливает 8к6+8 хитов"
+
+  potion_engi_dance:
+    name: "Танец огненных энги"
+    type: "potion"
+    dc: 15
+    tool: "Алхимика"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 1 }, { item: "М", quantity: 1 }, { item: "Р", quantity: 1 }]
+    description: "Восстанавливает 4к4+2 хитов, даёт сопротивление к огню на 2 раунда"
+
+  # === ЯДЫ ===
+  poison_bayar_hiyal:
+    name: "Баяр с Хиялом"
+    type: "poison"
+    dc: 17
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 2 }, { item: "К", quantity: 2 }]
+    description: "Тип: Оружейный. Наносит 2к6+4 урона ядом и накладывает эффект «ошеломление»"
+
+  poison_vadh_tears:
+    name: "Вадхийские слёзы"
+    type: "poison"
+    dc: 15
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 2 }, { item: "К", quantity: 1 }]
+    description: "Тип: Пищевой. Наносит 2к6+4 урона ядом и накладывает эффект «слепота»"
+
+  poison_vairakh_gift:
+    name: "Вайрахский подарок"
+    type: "poison"
+    dc: 13
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 1 }, { item: "К", quantity: 1 }]
+    description: "Тип: Оружейный. Наносит 2к4+2 урона ядом и накладывает эффект «отравление»"
+
+  poison_widow:
+    name: "Вдова"
+    type: "poison"
+    dc: 15
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "К", quantity: 2 }]
+    description: "Тип: Вдыхаемый. Накладывает эффект «паралич»"
+
+  poison_khar_breath:
+    name: "Дыхание Хара"
+    type: "poison"
+    dc: 15
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "К", quantity: 1 }, { item: "М", quantity: 2 }]
+    description: "Тип: Вдыхаемый. Накладывает эффект «отравление», спасбросок против яда увеличивается на 2 и совершается с помехой"
+
+  poison_zakkiri_kiss:
+    name: "Заккирийский поцелуй"
+    type: "poison"
+    dc: 17
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 2 }, { item: "К", quantity: 2 }]
+    description: "Тип: Вдыхаемый. Накладывает эффект «ошеломление» на 1 минуту"
+
+  poison_abandoned_blood:
+    name: "Кровь оставленного"
+    type: "poison"
+    dc: 17
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "К", quantity: 2 }, { item: "Р", quantity: 2 }]
+    description: "Тип: Контактный. Накладывает эффект «окаменение» на 1 минуту"
+
+  poison_to_ancestors:
+    name: "Обратно к предкам"
+    type: "poison"
+    dc: 21
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 4 }, { item: "М", quantity: 2 }]
+    description: "Тип: Оружейный. Наносит 2к6+8 урона ядом, повышает сложность спасброска против яда на 4"
+
+  poison_bounty_hunter:
+    name: "Охотник за головами"
+    type: "poison"
+    dc: 21
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 5 }]
+    description: "Тип: Оружейный. Наносит 2к4+4к6+10 урона ядом"
+
+  poison_last_meal:
+    name: "Последняя трапеза"
+    type: "poison"
+    dc: 17
+    tool: "Ядовара"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 3 }, { item: "Р", quantity: 1 }]
+    description: "Тип: Пищевой. Увеличивает сложность проверки против яда на 2. При провале наносит 2к4+2к6+6 урона ядом"
+
+  # === МАСЛА ===
+  oil_uzur_grace:
+    name: "Грация узура"
+    type: "oil"
+    dc: 15
+    tool: "Охотника"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 1 }, { item: "К", quantity: 2 }]
+    description: "Оружие наносит дополнительный урон 1к6 и имеет бонус +4 на попадание"
+
+  oil_vadhidek_spirit:
+    name: "Дух Вад-Хидека"
+    type: "oil"
+    dc: 15
+    tool: "Охотника"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 1 }, { item: "М", quantity: 2 }]
+    description: "Оружие наносит дополнительный урон 1к6 холодом и игнорирует иммунитет к сопротивлению холоду"
+
+  oil_engi_breath:
+    name: "Дыхание энги"
+    type: "oil"
+    dc: 17
+    tool: "Охотника"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 4 }]
+    description: "При попадании оружие наносит дополнительный урон 1к6 огнём, 1к6 холодом, 1к6 электричеством, 1к6 некротической энергией"
+
+  oil_ondor_blood:
+    name: "Кровь Ондоров"
+    type: "oil"
+    dc: 21
+    tool: "Охотника"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 5 }, { item: "М", quantity: 1 }]
+    description: "Оружие наносит дополнительно 1к6+2к8 урона огнём и игнорирует сопротивление к огню"
+
+  oil_rhaiya_laugh:
+    name: "Смех Рхайя"
+    type: "oil"
+    dc: 15
+    tool: "Охотника"
+    time: "15 мин."
+    ingredients: [{ item: "Р", quantity: 2 }, { item: "К", quantity: 1 }]
+    description: "Оружие наносит дополнительно 2к6 урона кислотой и имеет бонус +2 на попадание"
+
+  oil_tuslakh_collector:
+    name: "Собиратель туслахов"
+    type: "oil"
+    dc: 15
+    tool: "Охотника"
+    time: "15 мин."
+    ingredients: [{ item: "К", quantity: 1 }, { item: "Р", quantity: 2 }]
+    description: "Оружие наносит дополнительно 1к8 урона некротической энергией и игнорирует сопротивление к некротическому виду урона"
+
+  oil_beast_slayer:
+    name: "Убийца зверья"
+    type: "oil"
+    dc: 13
+    tool: "Охотника"
+    time: "15 мин."
+    ingredients: [{ item: "Н", quantity: 2 }]
+    description: "Оружие наносит дополнительно 1к8 урона"
+
+  # === ЛОВУШКИ ===
+  trap_crusher:
+    name: "Дробитель"
+    type: "trap"
+    dc: 16
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_medium", quantity: 2 }, { item: "metal_iron", quantity: 1 }, { item: "rope", quantity: 1 }]
+    description: "При активации ловушка наносит 6к6 колющего урона. При провале скорость цели снижается на 10 футов на 1к4 раундов"
+
+  trap_claw_grip:
+    name: "Когтехватка"
+    type: "trap"
+    dc: 12
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 4 }]
+    description: "При провале цель получает состояние «опутанный» на 2 раунда"
+
+  trap_bolas:
+    name: "Охотничий болас"
+    type: "trap"
+    dc: 14
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 3 }, { item: "trophy_medium", quantity: 1 }]
+    description: "При провале скорость цели снижается на 30 футов на 1к4 раундов"
+
+  trap_bone_spit:
+    name: "Плевок костей"
+    type: "trap"
+    dc: 14
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 3 }, { item: "trophy_medium", quantity: 1 }]
+    description: "При активации ловушка наносит 4к6 колющего урона и снижает скорость цели на 10 футов на 1к4 раундов"
+
+  trap_squeezer:
+    name: "Сжималка"
+    type: "trap"
+    dc: 12
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 4 }]
+    description: "Сложность спасброска против ловушки увеличена на 2. Провалив проверку, цель получает состояние «опутанный» до конца своего хода"
+
+  trap_sinew_snares:
+    name: "Силки из сухожилий"
+    type: "trap"
+    dc: 12
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 4 }]
+    description: "Скорость передвижения уменьшается на 20 футов на 1к4 раундов"
+
+  trap_snow_jaw:
+    name: "Снежная пасть"
+    type: "trap"
+    dc: 12
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 4 }]
+    description: "При активации ловушка наносит 2к6 колющего урона. Сложность спасброска против ловушки увеличена на 2"
+
+  trap_kele_strike:
+    name: "Удар келе"
+    type: "trap"
+    dc: 14
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 3 }, { item: "trophy_medium", quantity: 1 }]
+    description: "При активации ловушка наносит 6к6 колющего урона"
+
+  trap_skull_crusher:
+    name: "Череполом"
+    type: "trap"
+    dc: 16
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_medium", quantity: 2 }, { item: "metal_iron", quantity: 1 }, { item: "rope", quantity: 1 }]
+    description: "При активации ловушка наносит 8к6 колющего урона"
+
+  trap_uzur_pit:
+    name: "Яма узура"
+    type: "trap"
+    dc: 14
+    tool: "Охотника"
+    time: "10 мин."
+    ingredients: [{ item: "trophy_small", quantity: 3 }, { item: "trophy_medium", quantity: 1 }]
+    description: "При активации ловушка наносит 4к6 колющего урона. Сложность спасброска против ловушки увеличена на 2"
+
+  # === ИНСТРУМЕНТЫ ===
+  tool_pickaxe:
+    name: "Кирка"
+    type: "tool"
+    dc: 14
+    tool: "Базовые"
+    time: "30 минут"
+    ingredients: [{ item: "trophy_small", quantity: 1 }, { item: "trophy_medium", quantity: 1 }]
+
+  tool_herbalism:
+    name: "Набор травника"
+    type: "tool"
+    dc: 12
+    tool: "Базовые"
+    time: "30 минут"
+    ingredients: [{ item: "trophy_medium", quantity: 1 }]
+
+  tool_alchemy:
+    name: "Инструменты алхимика"
+    type: "tool"
+    dc: 12
+    tool: "Базовые"
+    time: "30 минут"
+    ingredients: [{ item: "trophy_medium", quantity: 1 }]
+
+  tool_smithing:
+    name: "Инструменты кузнеца"
+    type: "tool"
+    dc: 14
+    tool: "Базовые"
+    time: "1 час"
+    ingredients: [{ item: "metal_iron", quantity: 1 }, { item: "trophy_medium", quantity: 1 }]
+
+  tool_hunting:
+    name: "Инструменты охотника"
+    type: "tool"
+    dc: 12
+    tool: "Базовые"
+    time: "30 минут"
+    ingredients: [{ item: "trophy_medium", quantity: 1 }]
+
+  tool_carving:
+    name: "Инструменты резчика"
+    type: "tool"
+    dc: 10
+    tool: "Базовые"
+    time: "30 минут"
+    ingredients: [{ item: "trophy_small", quantity: 2 }]
+
+  tool_chigu_yami:
+    name: "Инструменты чигу-ями"
+    type: "tool"
+    dc: 12
+    tool: "Базовые"
+    time: "30 минут"
+    ingredients: [{ item: "trophy_medium", quantity: 1 }]
+
+  tool_jeweler:
+    name: "Инструменты ювелира"
+    type: "tool"
+    dc: 16
+    tool: "Базовые"
+    time: "2 часа"
+    ingredients: [{ item: "hiyal_bone", quantity: 1 }, { item: "metal_iron", quantity: 1 }, { item: "trophy_medium", quantity: 1 }]
+
+  tool_poisoner:
+    name: "Инструменты ядовара"
+    type: "tool"
+    dc: 12
+    tool: "Базовые"
+    time: "30 минут"
+    ingredients: [{ item: "trophy_medium", quantity: 1 }]

@@ -1,0 +1,29 @@
+<script>
+  window.vadhidekData = {{ site.data.vadhidek | jsonify }};
+</script>
+
+<div class="vadhidek-module">
+  <header class="vadhidek-header">
+    <h2 class="vadhidek-title">⚒️ Система Ремесла</h2>
+    <div class="vadhidek-search-bar">
+      <input type="text" class="vadhidek-search-input" placeholder="Поиск рецептов или материалов..." aria-label="Поиск">
+      <button class="vadhidek-search-btn" aria-label="Искать">🔍</button>
+    </div>
+  </header>
+
+  <div class="vadhidek-layout">
+    <aside class="vadhidek-sidebar">
+      <nav class="vadhidek-categories-container" aria-label="Категории крафта"></nav>
+      <div class="vadhidek-inventory-panel" aria-label="Инвентарь">
+        <div class="vadhidek-empty-inventory">📦 Инвентарь пуст</div>
+      </div>
+    </aside>
+
+    <section class="vadhidek-main">
+      <div class="vadhidek-items-list" aria-label="Список рецептов"></div>
+      <div class="vadhidek-recipe-detail" aria-label="Детали рецепта">
+        <p class="vadhidek-placeholder">Выберите категорию и рецепт для просмотра деталей, таблиц добычи и дерева крафта.</p>
+      </div>
+    </section>
+  </div>
+</div>

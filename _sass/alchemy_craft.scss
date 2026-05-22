@@ -1,0 +1,330 @@
+// Переменные
+
+$primary-color: $grey-dk-300;
+$accent-color: $grey-dk-200;
+$danger-color: #ff6b6b;
+$text-color: $grey-lt-300;
+$background-transparent: rgba(255, 255, 255, 0.1);
+
+.alchemy-module {
+  max-width: 900px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background: $primary-color;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  color: $text-color;
+  font-family: $body-font-family;
+
+  .slot {
+    transition: all 0.3s ease;
+
+    &:not(.slot-empty) {
+      border-style: solid;
+      border-color: $accent-color;
+    }
+  }
+
+  // Анимация для появления результатов
+  .potion-recipe {
+    animation: slideInUp 0.3s ease;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.alchemy-title {
+  text-align: left;
+  margin-bottom: 0.1rem;
+  font-size: 4em;
+  color: $grey-lt-300;
+}
+
+.slots-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+}
+
+.slot {
+  width: 40px;
+  height: 40px;
+  border: 3px dashed #ffd700;
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.slot:hover {
+  border-color: #ff6b6b;
+  transform: scale(1.05);
+}
+
+.slot-image {
+  max-width: 90%;
+  max-height: 90%;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+}
+
+.slot-empty {
+  opacity: 0.5;
+}
+
+.slot-number {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: #ff6b6b;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.symbols-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+.symbol-option {
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: rgba(255,255,255,0.1);
+}
+
+.symbol-option:hover {
+  border-color: #ffd700;
+  transform: translateY(-2px);
+}
+
+.symbol-option img {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
+}
+
+.symbol-name {
+  font-size: 0.8rem;
+  color: #ffd700;
+}
+
+.controls {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.check-btn {
+  padding: 1rem 1rem;
+  background: transparent;
+  color: #f9c58a;
+  border: 2px solid #f9c58a;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.check-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,107,107,0.4);
+}
+
+.check-btn:disabled {
+  color: #424242;
+  border: 2px solid #424242;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.clear-btn {
+  padding: 1rem 1rem;
+  background: transparent;
+  color: #ff6b6b;
+  border: 2px solid #ff6b6b;
+  border-radius: 15px;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background: #ff6b6b;
+  color: white;
+}
+
+.alchemy-results {
+  margin-top: 2rem;
+}
+
+.keyboard-hints {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #ccc;
+
+  small {
+    opacity: 0.7;
+  }
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  color: #ffd700;
+}
+
+.potion-recipe {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-left: 4px solid #ffd700;
+}
+
+.potion-recipe h3 {
+  color: #ffd700;
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.potion-description {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.missing-symbols {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255,0,0,0.1);
+  border-radius: 5px;
+  border-left: 3px solid #ff6b6b;
+}
+
+.ingredients-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.symbol-ingredients {
+  background: rgba(0,0,0,0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.symbol-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.symbol-header img {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.symbol-header strong {
+  color: #ffd700;
+  font-size: 0.7rem;
+}
+
+.symbol-ingredients ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.symbol-ingredients li {
+  list-style-type: circle;
+  margin: 0.3rem 0;
+  color: #ccc;
+}
+
+.symbol-ingredients-required {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+}
+
+.current-selection {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.selection-symbols {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.selection-symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+  min-width: 60px;
+}
+
+.selection-symbol img {
+  width: 30px;
+  height: 30px;
+}
+
+.selection-symbol span {
+  font-size: 1rem;
+  margin-top: 0.1rem;
+  color: #ffd700;
+}

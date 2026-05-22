@@ -1,0 +1,362 @@
+// Переменные (на основе Just The Docs)
+$damage-primary: $grey-dk-300;
+$damage-accent: $blue-000;
+$damage-success: $green-000;
+$damage-warning: $yellow-000;
+$damage-danger: $red-000;
+$damage-text: $grey-lt-300;
+$damage-border: $grey-dk-200;
+$damage-resistance: #9b59b6;
+$damage-penalty: #e74c3c;
+
+.damage-calculator-module {
+  max-width: 1000px;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  background: $damage-primary;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  color: $damage-text;
+  font-family: $body-font-family;
+
+  .damage-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: $damage-accent;
+    border-bottom: 2px solid $damage-border;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.damage-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid $damage-accent;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: $damage-accent;
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: $grey-lt-200;
+  }
+}
+
+.form-row {
+  margin-bottom: 0.75rem;
+
+  &.inline {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    label {
+      flex: 1;
+      min-width: 150px;
+    }
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid $damage-border;
+    border-radius: 4px;
+    color: $damage-text;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $damage-accent;
+      box-shadow: 0 0 0 2px rgba($damage-accent, 0.3);
+    }
+  }
+}
+
+.modifiers-grid,
+.armor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    input[type="number"] {
+      width: 60px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Сетка сопротивлений
+.resistances-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: rgba($damage-resistance, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba($damage-resistance, 0.3);
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: $damage-resistance;
+    }
+
+    &:hover {
+      color: $damage-resistance;
+    }
+  }
+}
+
+// Единый стиль для всех чекбоксов
+.modifier-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+}
+
+.aiming-hint {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: $grey-lt-200;
+  border-left: 3px solid $damage-penalty;
+}
+
+.damage-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  button {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid $damage-accent;
+    border-radius: 8px;
+    color: $damage-accent;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: $damage-accent;
+      color: $damage-primary;
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+
+  .clear-btn {
+    border-color: $damage-danger;
+    color: $damage-danger;
+
+    &:hover {
+      background: $damage-danger;
+      color: white;
+    }
+  }
+
+  .randomize-btn {
+    border-color: $damage-warning;
+    color: $damage-warning;
+
+    &:hover {
+      background: $damage-warning;
+      color: $damage-primary;
+    }
+  }
+}
+
+.roll-btn {
+  padding: 0.25rem 0.5rem;
+  margin-left: 0.5rem;
+  background: rgba($damage-accent, 0.2);
+  border: 1px solid $damage-accent;
+  border-radius: 4px;
+  color: $damage-accent;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &:hover {
+    background: $damage-accent;
+    color: $damage-primary;
+  }
+}
+
+.damage-results {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid $damage-border;
+}
+
+.instructions-list {
+  margin-bottom: 1.5rem;
+
+  .instructions-ordered-list {
+    counter-reset: instruction-counter;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .instruction-item {
+      position: relative;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      margin-bottom: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      border-left: 3px solid $damage-success;
+
+      &::before {
+        counter-increment: instruction-counter;
+        content: counter(instruction-counter);
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        background: $damage-success;
+        color: $damage-primary;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .no-instructions,
+  .error-message {
+    padding: 1rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+  }
+
+  .error-message {
+    color: $damage-danger;
+    border-left: 3px solid $damage-danger;
+  }
+}
+
+.calculation-log {
+  details {
+    summary {
+      cursor: pointer;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      font-size: 0.9rem;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    .log-content {
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .damage-calculator-module {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .form-row.inline {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .modifiers-grid,
+  .armor-grid,
+  .resistances-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .damage-controls {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

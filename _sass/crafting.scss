@@ -1,0 +1,800 @@
+// crafting.scss
+// Переменные
+$crafting-primary: $grey-dk-300;
+$crafting-accent: $grey-dk-200;
+$crafting-success: #4ade80;
+$crafting-warning: #fbbf24;
+$crafting-danger: #ff6b6b;
+$crafting-text: $grey-lt-300;
+$crafting-bg: rgba(255, 255, 255, 0.05);
+$crafting-border: rgba(255, 255, 255, 0.1);
+
+.crafting-module {
+    max-width: 2600px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    color: $crafting-text;
+    font-family: $body-font-family;
+
+    // Layout - оптимизированный
+    .crafting-layout {
+        display: grid;
+        grid-template-columns: 220px minmax(400px, 1fr) 320px;
+        gap: 1rem;
+        margin-top: 1.5rem;
+
+        @media (max-width: 1200px) {
+            grid-template-columns: 200px minmax(350px, 1fr) 300px;
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 992px) {
+            grid-template-columns: 1fr;
+
+            .crafting-sidebar,
+            .crafting-main,
+            .crafting-detail {
+                max-height: none;
+            }
+        }
+    }
+
+    // Sidebar - компактная
+    .crafting-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        min-width: 0; // Предотвращает переполнение
+    }
+
+    // Search
+    .crafting-search-container {
+        margin-bottom: 0.5rem;
+        position: relative;
+    }
+
+    .crafting-search-wrapper {
+        display: flex;
+        position: relative;
+
+        .crafting-search-input {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            padding-right: 2.2rem;
+            background: $crafting-bg;
+            border: 2px solid $crafting-border;
+            border-radius: 6px;
+            color: $crafting-text;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: $crafting-warning;
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .crafting-search-btn {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.2rem;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    // Categories - компактные
+    .crafting-categories-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        // Убираем max-height, чтобы контейнер расширялся по количеству категорий
+        overflow-y: auto;
+        padding-right: 0.3rem;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $crafting-bg;
+            border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $crafting-border;
+            border-radius: 2px;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+
+    .crafting-category-btn {
+        // Фиксированная высота для всех кнопок
+        min-height: 48px;
+        padding: 0.6rem 0.8rem;
+        background: $crafting-bg;
+        border: 2px solid $crafting-border;
+        border-radius: 6px;
+        color: $crafting-text;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left;
+        // Запрещаем перенос текста и обрезку
+        overflow: hidden;
+        // Фиксированная ширина
+        width: 100%;
+        box-sizing: border-box;
+        // Выравнивание текста по вертикали
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: $crafting-warning;
+            transform: translateX(3px);
+        }
+
+        &.active {
+            background: rgba(251, 191, 36, 0.15);
+            border-color: $crafting-warning;
+            color: $crafting-warning;
+        }
+    }
+
+    // Inventory Panel - компактная
+    .crafting-inventory-panel {
+        background: $crafting-bg;
+        border: 2px solid $crafting-border;
+        border-radius: 8px;
+        padding: 0.8rem;
+        max-height: 300px;
+        overflow-y: auto;
+
+        h3 {
+            margin: 0 0 0.8rem 0;
+            color: $crafting-warning;
+            font-size: 0.95rem;
+        }
+
+        .crafting-inventory-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .crafting-inventory-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            font-size: 0.8rem;
+
+            .crafting-item-name {
+                flex: 1;
+                margin-right: 0.4rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .crafting-item-quantity {
+                color: $crafting-warning;
+                font-weight: bold;
+                margin-right: 0.3rem;
+                flex-shrink: 0;
+            }
+
+            .crafting-remove-btn {
+                background: transparent;
+                border: 1px solid $crafting-danger;
+                color: $crafting-danger;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 0.8rem;
+                line-height: 1;
+                transition: all 0.2s ease;
+                flex-shrink: 0;
+
+                &:hover {
+                    background: $crafting-danger;
+                    color: white;
+                }
+            }
+        }
+
+        .crafting-clear-btn {
+            margin-top: 0.8rem;
+            width: 100%;
+            padding: 0.5rem;
+            background: transparent;
+            border: 2px solid $crafting-danger;
+            color: $crafting-danger;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: $crafting-danger;
+                color: white;
+            }
+        }
+
+        .crafting-empty-inventory {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            padding: 1.5rem 0;
+        }
+    }
+
+    // Main content - основной блок с предметами
+    .crafting-main {
+        background: $crafting-bg;
+        border: 2px solid $crafting-border;
+        border-radius: 8px;
+        padding: 1rem;
+        max-height: 700px;
+        overflow-y: auto;
+        min-width: 0; // Предотвращает переполнение
+    }
+
+    .crafting-items-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .crafting-item-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid $crafting-border;
+        border-radius: 6px;
+        padding: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border-color: $crafting-warning;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+        }
+
+        .crafting-item-header {
+            margin-bottom: 0.6rem;
+
+            h3 {
+                margin: 0 0 0.4rem 0;
+                font-size: 0.95rem;
+                color: $crafting-warning;
+                line-height: 1.3;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+
+            .crafting-item-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.3rem;
+                font-size: 0.75rem;
+
+                .crafting-dc {
+                    background: rgba(74, 222, 128, 0.2);
+                    color: $crafting-success;
+                    padding: 0.15rem 0.4rem;
+                    border-radius: 3px;
+                }
+
+                .crafting-time {
+                    background: rgba(251, 191, 36, 0.2);
+                    color: $crafting-warning;
+                    padding: 0.15rem 0.4rem;
+                    border-radius: 3px;
+                }
+
+                .crafting-price {
+                    background: rgba(255, 107, 107, 0.2);
+                    color: $crafting-danger;
+                    padding: 0.15rem 0.4rem;
+                    border-radius: 3px;
+                }
+            }
+        }
+
+        .crafting-item-preview {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+
+            .crafting-ingredients-count {
+                color: $crafting-success;
+            }
+
+            .crafting-surcharge {
+                color: $crafting-warning;
+            }
+
+            .crafting-material-source {
+                font-style: italic;
+            }
+        }
+    }
+
+    // Detail panel - правая панель
+    .crafting-detail {
+        background: $crafting-bg;
+        border: 2px solid $crafting-border;
+        border-radius: 8px;
+        padding: 1rem;
+        max-height: 700px;
+        overflow-y: auto;
+        min-width: 0; // Предотвращает переполнение
+    }
+
+    .crafting-recipe-detail {
+        .crafting-empty-detail {
+            text-align: center;
+            padding: 2rem 1rem;
+
+            .crafting-empty-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                opacity: 0.3;
+            }
+
+            p {
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 0.9rem;
+            }
+        }
+
+        .crafting-recipe-header {
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid $crafting-border;
+
+            h2 {
+                margin: 0 0 0.8rem 0;
+                color: $crafting-warning;
+                font-size: 1.3rem;
+                line-height: 1.3;
+            }
+
+            .crafting-recipe-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+
+                .crafting-tier {
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 4px;
+                    font-size: 0.75rem;
+                    font-weight: bold;
+
+                    &.crafting-tier-novice {
+                        background: rgba(74, 222, 128, 0.2);
+                        color: $crafting-success;
+                    }
+
+                    &.crafting-tier-journeyman {
+                        background: rgba(251, 191, 36, 0.2);
+                        color: $crafting-warning;
+                    }
+
+                    &.crafting-tier-master {
+                        background: rgba(255, 107, 107, 0.2);
+                        color: $crafting-danger;
+                    }
+                }
+
+                .crafting-type {
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 4px;
+                    font-size: 0.75rem;
+                    font-weight: bold;
+
+                    &.crafting-type-component {
+                        background: rgba(96, 165, 250, 0.2);
+                        color: #60a5fa;
+                    }
+
+                    &.crafting-type-weapon {
+                        background: rgba(251, 146, 60, 0.2);
+                        color: #fb923c;
+                    }
+                }
+
+                .crafting-dc, .crafting-time {
+                    padding: 0.25rem 0.5rem;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 4px;
+                    font-size: 0.75rem;
+                }
+            }
+        }
+
+        // Material detail
+        .crafting-material-detail {
+            .crafting-material-info {
+                p {
+                    margin: 0.4rem 0;
+                    font-size: 0.85rem;
+                }
+            }
+        }
+
+        // Recipe tree
+        .crafting-recipe-tree {
+            margin: 1.2rem 0;
+
+            h3 {
+                margin: 0 0 0.8rem 0;
+                color: $crafting-warning;
+                font-size: 1rem;
+            }
+        }
+
+        .crafting-recipe-node {
+            margin-bottom: 0.4rem;
+
+            .crafting-node-header {
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+                padding: 0.4rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 4px;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.08);
+                }
+            }
+
+            .crafting-toggle-recipe {
+                background: transparent;
+                border: 1px solid $crafting-border;
+                color: $crafting-text;
+                width: 20px;
+                height: 20px;
+                border-radius: 3px;
+                cursor: pointer;
+                font-size: 0.7rem;
+                transition: all 0.2s ease;
+                flex-shrink: 0;
+
+                &.crafting-hidden {
+                    visibility: hidden;
+                }
+
+                &:hover {
+                    border-color: $crafting-warning;
+                    color: $crafting-warning;
+                }
+            }
+
+            .crafting-node-spacer {
+                width: 20px;
+                flex-shrink: 0;
+            }
+
+            .crafting-node-name {
+                flex: 1;
+                font-size: 0.85rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .crafting-node-type {
+                padding: 0.15rem 0.4rem;
+                border-radius: 3px;
+                font-size: 0.65rem;
+                background: rgba(96, 165, 250, 0.2);
+                color: #60a5fa;
+                flex-shrink: 0;
+
+                &.crafting-material {
+                    background: rgba(74, 222, 128, 0.2);
+                    color: $crafting-success;
+                }
+            }
+
+            .crafting-node-quantity {
+                color: $crafting-warning;
+                font-weight: bold;
+                flex-shrink: 0;
+            }
+
+            .crafting-in-inventory {
+                color: $crafting-success;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+
+            .crafting-node-preview {
+                margin-top: 0.2rem;
+                padding-left: 1.5rem;
+                font-size: 0.75rem;
+                color: rgba(255, 255, 255, 0.5);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                .crafting-preview-ingredient {
+                    margin-right: 0.3rem;
+                }
+            }
+
+            &.crafting-has-recipe {
+                .crafting-node-header {
+                    border-left: 3px solid #60a5fa;
+                }
+            }
+
+            &.crafting-material {
+                .crafting-node-header {
+                    border-left: 3px solid $crafting-success;
+                }
+            }
+        }
+
+        // Summary
+        .crafting-recipe-summary {
+            margin-top: 1.5rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid $crafting-border;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .crafting-summary-block {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.8rem;
+            border-radius: 6px;
+
+            h4 {
+                margin: 0 0 0.4rem 0;
+                color: $crafting-warning;
+                font-size: 0.85rem;
+            }
+
+            .crafting-total-price {
+                font-size: 1.3rem;
+                font-weight: bold;
+                color: $crafting-danger;
+            }
+
+            .crafting-total-time {
+                font-size: 1.1rem;
+                color: $crafting-warning;
+            }
+        }
+
+        .crafting-materials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .crafting-material-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+
+            &.crafting-missing {
+                border-left: 3px solid $crafting-danger;
+            }
+
+            &.crafting-available {
+                border-left: 3px solid $crafting-success;
+            }
+
+            .crafting-material-name {
+                flex: 1;
+                min-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .crafting-material-quantity {
+                color: $crafting-warning;
+                font-weight: bold;
+                flex-shrink: 0;
+            }
+
+            .crafting-material-price {
+                color: rgba(255, 255, 255, 0.6);
+                flex-shrink: 0;
+            }
+
+            .crafting-material-have {
+                color: $crafting-success;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+
+            .crafting-material-missing {
+                color: $crafting-danger;
+                font-size: 0.75rem;
+                flex-shrink: 0;
+            }
+
+            .crafting-add-btn {
+                padding: 0.25rem 0.5rem;
+                background: transparent;
+                border: 1px solid $crafting-success;
+                color: $crafting-success;
+                border-radius: 3px;
+                cursor: pointer;
+                font-size: 0.75rem;
+                transition: all 0.2s ease;
+                flex-shrink: 0;
+
+                &:hover {
+                    background: $crafting-success;
+                    color: $crafting-primary;
+                }
+            }
+        }
+
+        .crafting-no-materials {
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        // Inventory status
+        .crafting-inventory-status {
+            margin-top: 0.8rem;
+            padding: 0.6rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+
+            &.crafting-available {
+                background: rgba(74, 222, 128, 0.15);
+                border: 2px solid $crafting-success;
+                color: $crafting-success;
+            }
+        }
+
+        // Actions
+        .crafting-recipe-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .crafting-btn {
+            padding: 0.7rem 1.2rem;
+            border: 2px solid;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            background: transparent;
+            flex: 1;
+            min-width: 120px;
+
+            &.crafting-btn-primary {
+                border-color: $crafting-warning;
+                color: $crafting-warning;
+
+                &:hover {
+                    background: $crafting-warning;
+                    color: $crafting-primary;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+                }
+            }
+
+            &.crafting-btn-secondary {
+                border-color: rgba(255, 255, 255, 0.3);
+                color: rgba(255, 255, 255, 0.7);
+
+                &:hover {
+                    border-color: rgba(255, 255, 255, 0.5);
+                    color: white;
+                    background: rgba(255, 255, 255, 0.1);
+                }
+            }
+        }
+    }
+
+    // Hints
+    .crafting-hints {
+        margin-top: 1.2rem;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 6px;
+        text-align: center;
+
+        small {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.8rem;
+        }
+    }
+}
+
+// Animations
+@keyframes crafting-slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.crafting-recipe-node {
+    animation: crafting-slideInRight 0.3s ease;
+}
+
+// Scrollbar для всех прокручиваемых областей
+.crafting-main::-webkit-scrollbar,
+.crafting-detail::-webkit-scrollbar,
+.crafting-inventory-panel::-webkit-scrollbar,
+.crafting-categories-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.crafting-main::-webkit-scrollbar-track,
+.crafting-detail::-webkit-scrollbar-track,
+.crafting-inventory-panel::-webkit-scrollbar-track,
+.crafting-categories-container::-webkit-scrollbar-track {
+    background: $crafting-bg;
+    border-radius: 3px;
+}
+
+.crafting-main::-webkit-scrollbar-thumb,
+.crafting-detail::-webkit-scrollbar-thumb,
+.crafting-inventory-panel::-webkit-scrollbar-thumb,
+.crafting-categories-container::-webkit-scrollbar-thumb {
+    background: $crafting-border;
+    border-radius: 3px;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}

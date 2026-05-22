@@ -1,0 +1,54 @@
+.dice-generator {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.dice-generator h3 {
+  margin: 0;
+  margin-top: 1em;
+  white-space: nowrap;
+}
+
+.dice-generator  p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+.roll-button {
+  background: $btn-primary-color;
+  color: $body-text-color;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.roll-button:hover {
+  background: $base-button-color;
+  transform: translateY(-2px);
+}
+
+.roll-button.rolling {
+  background: $body-background-color;
+  transform: scale(0.95);
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: $body-background-color;
+  display: inline-block;
+}
+
+.dice-result {
+  color: $body-text-color;
+  font-size: 16px;
+  font-style: italic;
+}

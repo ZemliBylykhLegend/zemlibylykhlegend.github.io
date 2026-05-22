@@ -1,0 +1,330 @@
+// creatures_card.scss
+$card-bg: rgba(30, 30, 40, 0.95);
+$card-border: rgba(255, 215, 0, 0.3);
+$card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+$text-primary: $grey-lt-300;
+$text-secondary: $grey-lt-200;
+$accent-gold: #ffd700;
+$accent-red: #ff6b6b;
+$accent-blue: #4ecdc4;
+$transition: all 0.3s ease;
+
+.creature-module-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  width: 100%;
+  align-items: flex-start;
+
+  &.layout-right {
+    flex-direction: row;
+    .creature-card-container {
+      order: 2;
+      margin-left: auto;
+    }
+    .creature-text-content {
+      order: 1;
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  &.layout-left {
+    flex-direction: row;
+    .creature-card-container {
+      order: 1;
+      margin-right: auto;
+    }
+    .creature-text-content {
+      order: 2;
+      flex: 1;
+      min-width: 0;
+    }
+  }
+
+  &.layout-top {
+    flex-direction: column;
+    .creature-card-container {
+      order: 1;
+      margin: 0 auto;
+    }
+    .creature-text-content {
+      order: 2;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column !important;
+    .creature-card-container,
+    .creature-text-content {
+      order: unset !important;
+      margin: 0 !important;
+      width: 100%;
+    }
+  }
+}
+
+.creature-card-container {
+  width: 350px;
+  max-width: 400px;
+  flex-shrink: 0;
+}
+
+.creature-card {
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: 12px;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+  transition: $transition;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border-color: $accent-gold;
+  }
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #8A887F, #6E6D66);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    transition: transform 0.5s ease;
+  }
+
+  .image-placeholder {
+    color: $text-secondary;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 1rem;
+    opacity: 0.7;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: $accent-red;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}
+
+.card-content {
+  padding: 1rem;
+
+  .card-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.4rem;
+    color: $accent-gold;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    padding-bottom: 0.5rem;
+  }
+
+  .card-type {
+    font-size: 0.85rem;
+    color: $accent-blue;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: $text-secondary;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+}
+
+.card-stats {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .stat-group {
+    margin-bottom: 0.75rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+    font-size: 0.85rem;
+
+    &.full-width {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-label {
+      color: $text-secondary;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      color: $accent-gold;
+      font-weight: 600;
+    }
+  }
+
+  // Ability scores grid
+  .ability-scores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+
+    .ability-score {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 6px;
+      padding: 0.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      .ability-key {
+        font-size: 0.75rem;
+        color: $text-secondary;
+        font-weight: 600;
+      }
+
+      .ability-value {
+        font-size: 1rem;
+        color: $accent-gold;
+        font-weight: 700;
+      }
+    }
+  }
+
+  // Passives list
+  .passives-list {
+    margin-top: 0.25rem;
+    padding-left: 1rem;
+
+    .passive-item {
+      color: $text-secondary;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-bottom: 0.25rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.card-abilities {
+  padding: 0.75rem 1rem;
+  background: rgba(255, 215, 0, 0.05);
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+
+  .ability-item {
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: $text-secondary;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .ability-name {
+      color: $accent-gold;
+      font-weight: 600;
+    }
+
+    .ability-desc {
+      color: $text-secondary;
+    }
+  }
+}
+
+.card-lore {
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: $text-secondary;
+  background: rgba(78, 205, 196, 0.05);
+  border-top: 1px solid rgba(78, 205, 196, 0.1);
+  line-height: 1.4;
+
+  &::before {
+    content: "📜 ";
+    margin-right: 0.25rem;
+  }
+}
+
+.creature-text-content {
+  color: $text-primary;
+  min-width: 0;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $accent-gold;
+    margin-top: 0;
+  }
+
+  p {
+    line-height: 1.6;
+    color: $text-secondary;
+  }
+
+  ul, ol {
+    color: $text-secondary;
+  }
+
+  blockquote {
+    border-left: 3px solid $accent-gold;
+    padding-left: 1rem;
+    color: $text-secondary;
+  }
+
+  // Actions sections styling
+  h4 {
+    color: $accent-red;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 107, 107, 0.3);
+    padding-bottom: 0.25rem;
+  }
+
+  .action-item, .bonus-item, .reaction-item {
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(255, 215, 0, 0.3);
+
+    strong {
+      color: $accent-gold;
+    }
+  }
+}
+
+[data-color-theme="dark"] .creature-module-wrapper {
+  .creature-card {
+    background: rgba(20, 20, 30, 0.98);
+  }
+}

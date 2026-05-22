@@ -1,0 +1,22 @@
+@import "./color_schemes/dark";
+
+$body-background-color: #1e1e1e;
+$body-heading-color: #dadada;
+$body-text-color: #dadada;
+$link-color: #f9c58a;
+$nav-child-link-color: #b3b3b3;
+
+$sidebar-color: #262626;
+$base-button-color: $grey-dk-250;
+$btn-primary-color: $blue-200;
+
+$code-background-color: #31343f; // OneDarkJekyll default for syntax-one-dark-vivid
+$code-linenumber-color: #dee2f7; // OneDarkJekyll .nf for syntax-one-dark-vivid
+$feedback-color: darken($sidebar-color, 3%);
+$table-background-color: #1e1e1e;
+
+$search-background-color: #262626;
+$search-result-preview-color: $grey-dk-000;
+$border-color: #363636;
+
+
