@@ -14,8 +14,8 @@ layout: default
 - Чтобы разобраться в системе крафта - загляните в симулятор [системы ремесла](/docs/vadhidek_craft).
 
 <span style="color:#FDDF6F;">Сайт:</span> [livingroomstudio](http://livingroomstudio.ru)  
-<span style="color:#A971FF;">Twitch:</span> [livingroomstudio](https://www.twitch.tv/livingroomstudio)  
 <span style="color:#0476FF;">VK:</span>  [livingroomstudio](https://vk.com/livingroomstudio)  
+<span style="color:#A971FF;">Twitch:</span> [livingroomstudio](https://www.twitch.tv/livingroomstudio)  
 <span style="color:#2FA5E2;">TG:</span> [lrsnews](https://t.me)  
 
 
