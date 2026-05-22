@@ -3,17 +3,38 @@ require 'cgi'
 require 'set'
 
 module AutoCrossRef
-  TARGET_DIR = 'docs/zemli_bylyh_legend'
+  # 🔹 Чтение конфигурации из _config.yml
+  def self.config(site)
+    return {} unless site&.config
+    site.config['auto_cross_ref'] || {}
+  end
 
-  EXCLUDED_WORDS = Set.new(%w[
-    народ народа народы народом народе народов народами народам
-    стоянка условия наркотиков наказывает ясного усопшими
-    наклоном нарубленой нарубленным усложняет усилиями наростов усы
-    устойчиво уснувшего наркотических на та атака атаку атаки атакой над там сих
-    края
-  ].map(&:downcase)).freeze
+  # 🔹 Получение списка каталогов для индексации
+  def self.target_dirs(site)
+    cfg = config(site)
+    base = cfg['base_dir'].to_s.strip.gsub(%r{^/+|/+$}, '')
+    base = 'docs' if base.empty?
 
-  module RussianEndings
+    subdirs = cfg['subdirs'] || []
+    return [base] if subdirs.empty?
+
+    subdirs.map do |dir|
+      dir = dir.to_s.strip
+      "#{base}/#{dir}".gsub(%r{/+}, '/')
+    end
+  end
+
+  # 🔹 Получение списка исключений
+  def self.excluded_words(site)
+    cfg = config(site)
+    words = cfg['excluded_words'] || []
+    Set.new(words.map(&:downcase))
+  end
+
+
+
+  # 🔹 Морфологический анализ
+  module RussianMorph
     ALL = %w[ами  ями  ыми  ими
       ому  ему  ого  его  ою  ею  ыми  ими  ых  их  ые  ие  ам
       ям  ах  ях  ов  ев  ей  ом  ем  ой  ей  ым  им  ая  яя
@@ -22,39 +43,30 @@ module AutoCrossRef
       ая  яя  ое  ее  ую  юю  ый  ий  ой  ые  ие  ых  их  ью  ами  ями
       а  я  о  е  и  ы  у  ю].freeze
     MAX_LEN = ALL.map(&:length).max
-  end
 
-  module RussianMorph
     def self.stem_for(word)
       return word if word.length <= 3
-
-      # # Для слов с дефисом обрабатываем КАЖДУЮ часть отдельно
-      # if word.include?('-')
-      #   parts = word.split('-')
-      #   stemmed_parts = parts.map { |p| trim_endings(p) }
-      #   return stemmed_parts.join('-')
-      # end
-
+      if word.include?('-')
+        parts = word.split('-')
+        stemmed_parts = parts.map { |p| trim_endings(p) }
+        return stemmed_parts.join('-')
+      end
       trim_endings(word)
     end
 
-    # Обрезает окончания из списка (только если основа остаётся >= 3 символов)
     def self.trim_endings(word)
-      RussianEndings::ALL.each do |ending|
+      ALL.each do |ending|
         if word.downcase.end_with?(ending)
           candidate = word[0..-ending.length-1]
-          # 🔹 ВАЖНО: проверяем, что основа достаточно длинная
           return candidate if candidate && candidate.length >= 3
         end
       end
       word
     end
 
-    # Генерирует паттерн: оригинал + опциональные символы (для поиска в тексте)
     def self.word_pattern(word)
       stem = stem_for(word)
-      # Разрешаем 0-(MAX_LEN) букв после основы (покрывает все окончания)
-      suffix = "[а-яёА-ЯЁ]{0,#{RussianEndings::MAX_LEN}}"
+      suffix = "[а-яёА-ЯЁ]{0,#{MAX_LEN}}"
       "#{Regexp.escape(stem)}#{suffix}"
     end
 
@@ -62,7 +74,6 @@ module AutoCrossRef
       term.split.map { |w| word_pattern(w) }.join('\s+')
     end
 
-    # Для сравнения: нормализуем оба слова к стему (в нижнем регистре)
     def self.canonical_stem(term)
       term.split.map { |w| stem_for(w.downcase) }.join(' ')
     end
@@ -70,14 +81,30 @@ module AutoCrossRef
 
   # 🔹 ШАГ 1: Сбор заголовков
   Jekyll::Hooks.register :site, :post_read do |site|
+    cfg = AutoCrossRef.config(site)
+    next unless cfg['enabled'] != false
+
+    target_dirs = AutoCrossRef.target_dirs(site)
+    excluded = AutoCrossRef.excluded_words(site)
+
+    Jekyll.logger.info "AutoCrossRef:", "Indexing headers in #{target_dirs.join(', ')}..."
     site.data['_cross_refs'] = {}
+
+    files_scanned = 0
+    headers_found = 0
+
     (site.pages + site.documents).each do |page|
-      next unless page.path.start_with?("#{TARGET_DIR}/") && page.path.end_with?('.md')
+      in_target = target_dirs.any? { |dir| page.path.start_with?("#{dir}/") }
+      next unless in_target
+      next unless page.path.end_with?('.md')
       next unless page.respond_to?(:content) && page.content
+
+      files_scanned += 1
 
       page.content.scan(%r{^(\#{1,2})\s+(.+)$}).each do |_level, title|
         title = title.strip
         next if title.empty?
+
         slug = title.downcase.gsub(/[^\p{Alnum}\s-]/, '').gsub(/\s+/, '-')
         slug = CGI.escape(slug) if slug.match?(/[^a-zA-Z0-9_-]/)
 
@@ -86,51 +113,67 @@ module AutoCrossRef
           slug: slug,
           original: title,
           file: page.path,
-          stem: RussianMorph.canonical_stem(title) # 👈 Для сравнения
+          stem: RussianMorph.canonical_stem(title)
         }
+        headers_found += 1
       end
     end
+
+    Jekyll.logger.info "AutoCrossRef:", "Scanned #{files_scanned} files, indexed #{headers_found} headers."
   end
 
   # 🔹 ШАГ 2: Внедрение ссылок
   Jekyll::Hooks.register :pages, :pre_render do |page, payload|
-    next unless page.path.start_with?("#{TARGET_DIR}/") && page.path.end_with?('.md')
-    refs = payload['site'].data['_cross_refs']
+    # 🔹 ИСПРАВЛЕНО: используем page.site вместо payload['site']
+    site = page.site
+    cfg = AutoCrossRef.config(site)
+    next unless cfg['enabled'] != false
+
+    target_dirs = AutoCrossRef.target_dirs(site)
+    excluded = AutoCrossRef.excluded_words(site)
+
+    in_target = target_dirs.any? { |dir| page.path.start_with?("#{dir}/") }
+    next unless in_target
+    next unless page.path.end_with?('.md')
+
+    refs = site.data['_cross_refs']
     next if refs.nil? || refs.empty?
 
     content = page.content || ""
     placeholders = {}
     idx = 0
 
-    # Изолируем заголовки
+    # 1. Изолируем заголовки
     content = content.gsub(%r{^(\#{1,2}\s[^\n]+)}) do |m|
       k = "%%HDR_#{idx += 1}%%"
       placeholders[k] = m
       k
     end
 
-    # Изолируем код и ссылки
+    # 2. Изолируем код и ссылки
     content = content.gsub(/(```[\s\S]*?```|`[^`]+`|\[.*?\]\(.*?\)|!\[.*?\]\(.*?\))/) do |m|
       k = "%%BLOCK_#{idx += 1}%%"
       placeholders[k] = m
       k
     end
 
+    # 3. Сортируем по длине
     sorted_refs = refs.values.sort_by { |r| -r[:original].length }
     terms_regex = sorted_refs.map { |r| RussianMorph.term_pattern(r[:original]) }.join('|')
     full_pattern = %r{(?<![а-яёa-zA-Z0-9_\[])(#{terms_regex})(?![а-яёa-zA-Z0-9_\]])}i
 
+    # 4. Однопроходовая замена
     content = content.gsub(full_pattern) do |match|
-      # 🔹 Сравниваем по стемам (работает в обе стороны)
       match_stem = RussianMorph.canonical_stem(match)
       ref = sorted_refs.find { |r| r[:stem] == match_stem }
 
-      next match if ref.nil? || EXCLUDED_WORDS.include?(match.downcase)
+      next match if ref.nil? || excluded.include?(match.downcase)
 
       link = (page.path == ref[:file]) ? "##{ref[:slug]}" : "#{ref[:url]}##{ref[:slug]}"
       "[#{match}](#{link})"
     end
 
+    # 5. Восстанавливаем блоки
     placeholders.each { |k, v| content = content.gsub(k, v) }
     page.content = content
   end

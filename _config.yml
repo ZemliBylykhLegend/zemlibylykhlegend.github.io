@@ -17,6 +17,7 @@ sass:
 
 lsi: false
 safe: false
+logo: "/assets/images/zbl.png"
 plugins:
   - jekyll-feed
 incremental: false
@@ -44,3 +45,45 @@ creature_cards:
   default_position: "right"
   image_path: "/assets/images/creatures/"
   enable_collapsible: true
+
+auto_cross_ref:
+  enabled: true
+  base_dir: 'docs'
+  subdirs:
+    - glosariy
+    - bestiariy
+  excluded_words:
+    - народ
+    - народа
+    - народы
+    - народом
+    - народе
+    - народов
+    - народами
+    - народам
+    - стоянка
+    - условия
+    - наркотиков
+    - наказывает
+    - ясного
+    - усопшими
+    - наклоном
+    - нарубленой
+    - нарубленным
+    - усложняет
+    - усилиями
+    - наростов
+    - усы
+    - устойчиво
+    - уснувшего
+    - наркотических
+    - на
+    - та
+    - атака
+    - атаку
+    - атаки
+    - атакой
+    - над
+    - там
+    - сих
+    - края
