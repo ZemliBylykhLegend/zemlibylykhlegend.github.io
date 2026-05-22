@@ -1,12 +1,12 @@
-title: Gikls Wiki
-email: gikls69@gmail.com
+title: Земли Былых Легенд
+email: dmitry.radionov69@gmail.com
 encoding: utf-8
 description: >-
-  Сайт для моей базы Obsidian и обмена информацией
+  Wiki база по сеттингу Земли Былых Легенд
 baseurl: ""
-domain: gikls.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
-url: https://gikls.github.io  # the base hostname and protocol for your site, e.g. http://example.com
-github_username:  gikls
+domain: zemlibylykhlegend.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
+url: https://zemlibylykhlegend.github.io  # the base hostname and protocol for your site, e.g. http://example.com
+github_username:  ZemliBylykhLegend
 
 color_scheme: reading
 
