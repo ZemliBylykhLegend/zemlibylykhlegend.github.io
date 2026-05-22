@@ -31,8 +31,6 @@ module AutoCrossRef
     Set.new(words.map(&:downcase))
   end
 
-
-
   # 🔹 Морфологический анализ
   module RussianMorph
     ALL = %w[ами  ями  ыми  ими
@@ -41,7 +39,7 @@ module AutoCrossRef
       ое  ее  ую  юю  ый  ий  ой
       ам  ям  ах  ях  ов  ев  ей  ом  ем  ой  ей  ым  им ец цы
       ая  яя  ое  ее  ую  юю  ый  ий  ой  ые  ие  ых  их  ью  ами  ями
-      а  я  о  е  и  ы  у  ю ь].freeze
+      а  я  о  е  и  ы  у  ю  ь].freeze
     MAX_LEN = ALL.map(&:length).max
 
     def self.stem_for(word)
