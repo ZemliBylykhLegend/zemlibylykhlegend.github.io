@@ -1325,7 +1325,6 @@ creatures:
     name: "Торстейн"
     type: "Тангат | Воин(10) | Шаман(1)"
     image: "torstein.png"
-    cr: "Жив"
     stats:
       hp: 114
       armor: 19
