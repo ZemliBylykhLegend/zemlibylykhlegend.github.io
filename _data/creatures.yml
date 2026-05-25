@@ -1337,7 +1337,7 @@ creatures:
     description: "Чемпион | —"
   vuk:
     name: "Вук"
-    type: "Ойрхонец | Друид"
+    type: "Ойрхонец | Друид(9)"
     image: "vuk.png"
     stats:
       hp: 93
@@ -1365,7 +1365,7 @@ creatures:
     description: "Духовный сосуд"
   anagor:
     name: "Анагор"
-    type: "Эванкил | Паладин"
+    type: "Эванкил | Паладин(8)"
     image: "anagor.png"
     stats:
       hp: 66
@@ -1379,7 +1379,7 @@ creatures:
     description: "Клятва молчания"
   kyu:
     name: "Кю"
-    type: "Сунстей | Бард"
+    type: "Сунстей | Бард(11)"
     image: "kyu.png"
     stats:
       hp: 68
@@ -1398,7 +1398,7 @@ creatures:
     description: "Руны Хаада"
   lorat:
     name: "Лорат"
-    type: "Хагас-бако | Монах"
+    type: "Хагас-бако | Монах(6)"
     image: "lorat.png"
     stats:
       hp: 51
@@ -1412,7 +1412,7 @@ creatures:
     description: "Путь Акуна"
   agata:
     name: "Агата Дюваль"
-    type: "Человек | Изобретатель"
+    type: "Человек | Изобретатель(6)"
     image: "agata.png"
     stats:
       hp: 47
@@ -1426,7 +1426,7 @@ creatures:
     description: "Артиллерист"
   azandey:
     name: "Азандей"
-    type: "Сарвид | Колдун"
+    type: "Сарвид | Колдун(6)"
     image: "azandey.png"
     stats:
       hp: 60
@@ -1440,7 +1440,7 @@ creatures:
     description: "Первичный"
   gurg:
     name: "Гург Каури Егу"
-    type: "Нокар | Варвар"
+    type: "Нокар | Варвар(6)"
     image: "gurg.png"
     stats:
       hp: 71
@@ -1454,7 +1454,7 @@ creatures:
     description: "Путь неутолимого голода"
   kriv:
     name: "Крив"
-    type: "Сарвид | Шаман"
+    type: "Сарвид | Шаман(6)"
     image: "kriv.png"
     stats:
       hp: 73
@@ -1468,7 +1468,7 @@ creatures:
     description: "Путь кровавых ритуалов Айзы"
   vetvistaya:
     name: "Ветвистая"
-    type: "Занчин | Следопыт"
+    type: "Занчин | Следопыт(11)"
     image: "vetvistaya.png"
     stats:
       hp: 103
@@ -1482,7 +1482,7 @@ creatures:
     description: "Хранитель роя"
   asghan:
     name: "Асгхан"
-    type: "Эванкил | Тамак"
+    type: "Эванкил | Тамак(11)"
     image: "asghan.png"
     stats:
       hp: 115
@@ -1496,7 +1496,7 @@ creatures:
     description: "Король берадов"
   sayara:
     name: "Саяра"
-    type: "Эванкил | Плут"
+    type: "Эванкил | Плут(11)"
     image: "sayara.png"
     stats:
       hp: 87
