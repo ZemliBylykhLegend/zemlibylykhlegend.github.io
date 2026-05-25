@@ -2,7 +2,7 @@
 title: Оставленный охотник
 layout: default
 nav_order: 2
-parent: Бестиарий ЗБЛ
+parent: Бестиарий
 ---
 
 # Оставленный охотник

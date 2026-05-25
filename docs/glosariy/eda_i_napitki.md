@@ -2,7 +2,7 @@
 title: Еда и напитки ЗБЛ
 layout: default
 nav_order: 2
-parent: Глосарий ЗБЛ
+parent: Глосарий
 ---
 
 ## Вадхийская вотчина

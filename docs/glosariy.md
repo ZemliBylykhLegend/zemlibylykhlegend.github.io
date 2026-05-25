@@ -1,5 +1,5 @@
 ---
-title: Глосарий ЗБЛ
+title: Глосарий
 layout: default
 nav_order: 1
 ---

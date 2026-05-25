@@ -2,7 +2,7 @@
 title: Ведомый кихи голода
 layout: default
 nav_order: 2
-parent: Бестиарий ЗБЛ
+parent: Бестиарий
 ---
 
 # Ведомый кихи голода

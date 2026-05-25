@@ -2,7 +2,7 @@
 title: Сокач
 layout: default
 nav_order: 2
-parent: Бестиарий ЗБЛ
+parent: Бестиарий
 ---
 
 # Сокач

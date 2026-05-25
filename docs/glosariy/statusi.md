@@ -2,7 +2,7 @@
 title: Титулы, Статусы, Профессии ЗБЛ
 layout: default
 nav_order: 2
-parent: Глосарий ЗБЛ
+parent: Глосарий
 ---
 
 ## Атако

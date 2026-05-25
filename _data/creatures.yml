@@ -1321,86 +1321,74 @@ creatures:
       languages: "—"
       danger: "13 (10000 опыта)"
       mastery: "+5"
-
-  barbi:
-    name: "Барби"
-    type: "Воспитанница интерната"
-    image: "barbi.png"
-    description: "Одна из Лишних"
-    stats:
-      skills: "Очаровательная магия"
-  kislij:
-    name: "Кислый"
-    type: "Воспитанник интерната"
-    image: "kislij.png"
-    description: "Один из Лишних"
-    stats:
-      skills: "Ядовитый пот"
-  kvazimodo:
-    name: "Квазимодо"
-    type: "Воспитанница интерната"
-    description: "Одна из Лишних"
-    stats:
-      skills: "Знание проходов"
-  scalpelj:
-    name: "Скальпель"
-    type: "Воспитанник интерната"
-    description: "Один из Лишних"
-    stats:
-      skills: "Внушающий страх"
-  roza:
-    name: "Роза"
-    type: "Воспитанница интерната"
-    description: "Лидер группы Колдуны"
-    stats:
-      skills: "???"
-  pugalo:
-    name: "Пугало"
-    type: "Воспитанница интерната"
-    description: "Одна из колдунов."
-    stats:
-      skills: "???"
-  drakon:
-    name: "Дракон"
-    type: "Воспитанник интерната"
-    image: "drakon.png"
-    description: "Лидер группы Мертвецы."
-    stats:
-      skills: "Превращение в дракона"
-  svistok:
-    name: "Свисток"
-    type: "Воспитанник интерната"
-    description: "Один из Мертвецов"
-    stats:
-      skills: "Оглушительный свист"
-  klyaksa:
-    name: "Клякса"
-    type: "Воспитанник интерната"
-    description: "Один из Лишних"
-    stats:
-      skills: "Ожившие рисунки"
-  shoker:
-    name: "Клякса"
-    type: "Воспитанник интерната"
-    description: "Один из Лишних"
-    stats:
-      skills: "Электростатическая бомба"
-  zubr:
-    name: "Зубр"
-    type: "Воспитанник интерната"
-    description: "Лидер группы Куклы."
-    stats:
-      skills: "???"
-  bulavka:
-    name: "Булавка"
-    type: "Воспитанница интерната"
-    description: "Одна из Мертвецов. Девушка Дракона. Говорит только правду."
-    stats:
-      skills: "???"
-  cerber:
-    name: "Цербер"
-    type: "Сторож Интерната"
-    description: "Вечный охранник интерната."
-    stats:
-      skills: "Мгновенное перемещение"
+  torstein:
+    name: "Торстейн"
+    type: "Тангат | Воин | Шаман"
+    image: "torstein.png"
+    description: "Чемпион | —"
+  vuk:
+    name: "Вук"
+    type: "Ойрхонец | Друид"
+    image: "vuk.png"
+    description: "Круг инстинктов"
+  dragana:
+    name: "Драгана"
+    type: "Сарвид | Чародей"
+    image: "dragana.png"
+    description: "Духовный сосуд"
+  anagor:
+    name: "Анагор"
+    type: "Эванкил | Паладин"
+    image: "anagor.png"
+    description: "Клятва молчания"
+  kyu:
+    name: "Кю"
+    type: "Сунстей | Бард"
+    image: "kyu.png"
+    description: "Коллегия кукловодов"
+  sakhayan:
+    name: "Сахаян"
+    type: "Эванкил | Шаман"
+    image: "sakhayan.png"
+    description: "Руны Хаада"
+  lorat:
+    name: "Лорат"
+    type: "Хагас-бако | Монах"
+    image: "lorat.png"
+    description: "Путь Акуна"
+  agata:
+    name: "Агата Дюваль"
+    type: "Человек | Изобретатель"
+    image: "agata.png"
+    description: "Артиллерист"
+  azandey:
+    name: "Азандей"
+    type: "Сарвид | Колдун"
+    image: "azandey.png"
+    description: "Первичный"
+  gurg:
+    name: "Гург Каури Егу"
+    type: "Нокар | Варвар"
+    image: "gurg.png"
+    description: "Путь неутолимого голода"
+  kriv:
+    name: "Крив"
+    type: "Сарвид | Шаман"
+    image: "kriv.png"
+    description: "Путь кровавых ритуалов Айзы"
+  vetvistaya:
+    name: "Ветвистая"
+    type: "Занчин | Следопыт"
+    image: "vetvistaya.png"
+    description: "Хранитель роя"
+  asghan:
+    name: "Асгхан"
+    type: "Эванкил | Тамак"
+    image: "asghan.png"
+    description: "Король берадов"
+  sayara:
+    name: "Саяра"
+    type: "Эванкил | Плут"
+    image: "sayara.png"
+    description: "Заккирийский мерзавец"
 

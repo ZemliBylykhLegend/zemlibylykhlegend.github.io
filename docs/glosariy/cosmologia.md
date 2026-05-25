@@ -2,7 +2,7 @@
 title: Космология ЗБЛ
 layout: default
 nav_order: 2
-parent: Глосарий ЗБЛ
+parent: Глосарий
 ---
 
 ## Аан-Барь

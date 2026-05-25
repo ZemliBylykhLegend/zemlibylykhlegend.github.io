@@ -2,7 +2,7 @@
 title: Суу-олок
 layout: default
 nav_order: 2
-parent: Бестиарий ЗБЛ
+parent: Бестиарий
 ---
 
 # Суу-олок
