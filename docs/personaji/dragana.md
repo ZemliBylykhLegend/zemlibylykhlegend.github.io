@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Драгана
 
-{% include creatures_card_module.html creature_key="dragana" layout="right" %}
+{% include creatures_card_module.html creature_key="dragana" layout="right" image_bg="black"%}
+

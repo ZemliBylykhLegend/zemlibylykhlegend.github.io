@@ -103,7 +103,6 @@ $transition: all 0.3s ease;
     object-fit: scale-down;
     transition: transform 0.5s ease;
   }
-
   .image-placeholder {
     color: $text-secondary;
     font-size: 0.9rem;
@@ -111,7 +110,6 @@ $transition: all 0.3s ease;
     padding: 1rem;
     opacity: 0.7;
   }
-
   .card-badge {
     position: absolute;
     top: 10px;
@@ -125,6 +123,17 @@ $transition: all 0.3s ease;
     text-transform: uppercase;
   }
 }
+
+// ✅ Модификаторы фона
+.card-image--neutral { background: linear-gradient(135deg, #8A887F, #6E6D66); }
+.card-image--dark { background: $grey-dk-300; }
+.card-image--light { background: $grey-lt-300; }
+.card-image--black { background: #0a0a0a; }
+.card-image--blacktored { background: radial-gradient(circle at bottom left, rgba(255, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 1) 60%);}
+.card-image--white { background: #f4f4f5; }
+.card-image--gold { background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05)); }
+.card-image--red { background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.05)); }
+.card-image--blue { background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(78, 205, 196, 0.05)); }
 
 .card-content {
   padding: 1rem;

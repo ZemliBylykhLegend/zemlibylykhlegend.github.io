@@ -7,4 +7,4 @@ parent: Персонажи
 
 # Агата
 
-{% include creatures_card_module.html creature_key="agata" layout="right" %}
+{% include creatures_card_module.html creature_key="agata" layout="right" image_bg="black"%}

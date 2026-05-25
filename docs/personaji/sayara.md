@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Саяра
 
-{% include creatures_card_module.html creature_key="sayara" layout="right" %}
+{% include creatures_card_module.html creature_key="sayara" layout="right" image_bg="blacktored"%}
+

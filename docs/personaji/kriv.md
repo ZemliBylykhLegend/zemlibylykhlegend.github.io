@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Крив
 
-{% include creatures_card_module.html creature_key="kriv" layout="right" %}
+{% include creatures_card_module.html creature_key="kriv" layout="right" image_bg="black"%}
+

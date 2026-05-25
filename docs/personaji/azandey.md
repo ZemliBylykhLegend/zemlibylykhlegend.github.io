@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Азандей
 
-{% include creatures_card_module.html creature_key="azandey" layout="right" %}
+{% include creatures_card_module.html creature_key="azandey" layout="right" image_bg="black"%}
+

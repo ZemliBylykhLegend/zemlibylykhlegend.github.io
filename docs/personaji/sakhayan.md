@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Сахаян
 
-{% include creatures_card_module.html creature_key="sakhayan" layout="right" %}
+{% include creatures_card_module.html creature_key="sakhayan" layout="right" image_bg="black"%}
+

@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Асгхан
 
-{% include creatures_card_module.html creature_key="asghan" layout="right" %}
+{% include creatures_card_module.html creature_key="asghan" layout="right" image_bg="blacktored"%}
+

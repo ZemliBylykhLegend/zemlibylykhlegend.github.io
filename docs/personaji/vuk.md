@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Вук
 
-{% include creatures_card_module.html creature_key="vuk" layout="right" %}
+{% include creatures_card_module.html creature_key="vuk" layout="right" image_bg="black"%}
+

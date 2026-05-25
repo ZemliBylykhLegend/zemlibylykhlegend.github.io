@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Гург
 
-{% include creatures_card_module.html creature_key="gurg" layout="right" %}
+{% include creatures_card_module.html creature_key="gurg" layout="right" image_bg="black"%}
+

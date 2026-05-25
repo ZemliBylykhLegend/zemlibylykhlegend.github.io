@@ -7,4 +7,5 @@ parent: Персонажи
 
 # Кю
 
-{% include creatures_card_module.html creature_key="kyu" layout="right" %}
+{% include creatures_card_module.html creature_key="kyu" layout="right" image_bg="black"%}
+
