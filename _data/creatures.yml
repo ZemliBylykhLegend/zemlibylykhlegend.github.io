@@ -1323,28 +1323,74 @@ creatures:
       mastery: "+5"
   torstein:
     name: "Торстейн"
-    type: "Тангат | Воин | Шаман"
+    type: "Тангат | Воин(10) | Шаман(1)"
     image: "torstein.png"
+    cr: "Жив"
+    stats:
+      hp: 114
+      armor: 19
+      STR: 20
+      AGI: 8
+      CON: 18
+      INT: 8
+      WIS: 14
+      CHA: 12
     description: "Чемпион | —"
   vuk:
     name: "Вук"
     type: "Ойрхонец | Друид"
     image: "vuk.png"
+    stats:
+      hp: 93
+      armor: 12
+      STR: 8
+      AGI: 14
+      CON: 20
+      INT: 8
+      WIS: 20
+      CHA: 10
     description: "Круг инстинктов"
   dragana:
     name: "Драгана"
     type: "Сарвид | Чародей"
     image: "dragana.png"
+    stats:
+      hp: 33
+      armor: 12
+      STR: 8
+      AGI: 15
+      CON: 12
+      INT: 12
+      WIS: 10
+      CHA: 20
     description: "Духовный сосуд"
   anagor:
     name: "Анагор"
     type: "Эванкил | Паладин"
     image: "anagor.png"
+    stats:
+      hp: 66
+      armor: 19
+      STR: 16
+      AGI: 9
+      CON: 14
+      INT: 13
+      WIS: 11
+      CHA: 15
     description: "Клятва молчания"
   kyu:
     name: "Кю"
     type: "Сунстей | Бард"
     image: "kyu.png"
+    stats:
+      hp: 68
+      armor: 14
+      STR: 8
+      AGI: 14
+      CON: 10
+      INT: 13
+      WIS: 14
+      CHA: 20
     description: "Коллегия кукловодов"
   sakhayan:
     name: "Сахаян"
@@ -1355,40 +1401,112 @@ creatures:
     name: "Лорат"
     type: "Хагас-бако | Монах"
     image: "lorat.png"
+    stats:
+      hp: 51
+      armor: 17
+      STR: 8
+      AGI: 18
+      CON: 16
+      INT: 8
+      WIS: 16
+      CHA: 8
     description: "Путь Акуна"
   agata:
     name: "Агата Дюваль"
     type: "Человек | Изобретатель"
     image: "agata.png"
+    stats:
+      hp: 47
+      armor: 18
+      STR: 9
+      AGI: 14
+      CON: 14
+      INT: 18
+      WIS: 12
+      CHA: 14
     description: "Артиллерист"
   azandey:
     name: "Азандей"
     type: "Сарвид | Колдун"
     image: "azandey.png"
+    stats:
+      hp: 60
+      armor: 14
+      STR: 8
+      AGI: 14
+      CON: 14
+      INT: 9
+      WIS: 12
+      CHA: 19
     description: "Первичный"
   gurg:
     name: "Гург Каури Егу"
     type: "Нокар | Варвар"
     image: "gurg.png"
+    stats:
+      hp: 71
+      armor: 16
+      STR: 20
+      AGI: 14
+      CON: 19
+      INT: 8
+      WIS: 10
+      CHA: 10
     description: "Путь неутолимого голода"
   kriv:
     name: "Крив"
     type: "Сарвид | Шаман"
     image: "kriv.png"
+    stats:
+      hp: 73
+      armor: 16
+      STR: 9
+      AGI: 14
+      CON: 16
+      INT: 10
+      WIS: 16
+      CHA: 16
     description: "Путь кровавых ритуалов Айзы"
   vetvistaya:
     name: "Ветвистая"
     type: "Занчин | Следопыт"
     image: "vetvistaya.png"
+    stats:
+      hp: 103
+      armor: 15
+      STR: 8
+      AGI: 20
+      CON: 16
+      INT: 12
+      WIS: 14
+      CHA: 8
     description: "Хранитель роя"
   asghan:
     name: "Асгхан"
     type: "Эванкил | Тамак"
     image: "asghan.png"
+    stats:
+      hp: 115
+      armor: 19
+      STR: 10
+      AGI: 20
+      CON: 18
+      INT: 8
+      WIS: 8
+      CHA: 14
     description: "Король берадов"
   sayara:
     name: "Саяра"
     type: "Эванкил | Плут"
     image: "sayara.png"
+    stats:
+      hp: 87
+      armor: 17
+      STR: 9
+      AGI: 20
+      CON: 16
+      INT: 9
+      WIS: 16
+      CHA: 9
     description: "Заккирийский мерзавец"
 
