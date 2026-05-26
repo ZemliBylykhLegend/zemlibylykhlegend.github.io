@@ -1,5 +1,5 @@
 ---
-title: Фауна ЗБЛ
+title: Флора ЗБЛ
 layout: default
 nav_order: 2
 parent: Глосарий
