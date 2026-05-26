@@ -925,7 +925,6 @@ creatures:
   tuekyun_chief:
     name: "Туекюн-вождь"
     type: "Маленький великан"
-    image: "tuekyun_chief.png"
     description: "Вождь племени туекюнов, обладающий большей силой и авторитетом."
     cr: "1"
     stats:
