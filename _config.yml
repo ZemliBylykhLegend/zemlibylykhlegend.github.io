@@ -52,6 +52,8 @@ auto_cross_ref:
   subdirs:
     - glosariy
     - bestiariy
+    - personaji
+    - pereskazy
   excluded_words:
     - море
     - народ
@@ -75,11 +77,13 @@ auto_cross_ref:
     - усилиями
     - наростов
     - усы
+    - усами
     - устойчиво
     - уснувшего
     - наркотических
     - на
     - та
+    - тени
     - атака
     - атаку
     - атаки
