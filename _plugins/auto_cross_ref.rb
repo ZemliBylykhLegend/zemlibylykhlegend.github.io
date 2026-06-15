@@ -153,7 +153,7 @@ module AutoCrossRef
     end
 
     # 2. Изоляция кода, ссылок, изображений
-    content = content.gsub(/(```[\s\S]*?```|`[^`]+`|$$.*?$$$.*?$|!$$.*?$$$.*?$)/) do |m|
+    content = content.gsub(/(```[\s\S]*?```|`[^`]+`|!$$[^$$]*\]$[^)]+$|$$[^$$]+\]$[^)]+$)/) do |m|
       k = "%%BLOCK_#{idx += 1}%%"
       placeholders[k] = m
       k
