@@ -54,6 +54,7 @@ auto_cross_ref:
     - bestiariy
     - personaji
     - pereskazy
+    - npc
   excluded_words:
     - море
     - народ

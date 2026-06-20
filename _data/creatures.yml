@@ -1507,4 +1507,40 @@ creatures:
       WIS: 16
       CHA: 9
     description: "Заккирийский мерзавец"
+  nurgun:
+    name: "Нургун"
+    description: "Вождь Хатана"
+  kustuk:
+    name: "Кустук"
+    description: "Правитель Согдиана"
+  dalain:
+    name: "Далайн"
+    description: "Тангат-пират"
+  yugen_sha:
+    name: "Юген-Ша"
+    description: "Предводительница Бако"
+  beliy_karu:
+    name: "Белый Кару"
+    description: "Воевода Накаров"
+  erlkhan:
+    name: "Эрлхан"
+    description: "Торговец"
+  tatai:
+    name: "Татай"
+    description: "Закириец"
+  talban:
+    name: "Талбан"
+    description: "Закириец"
+  sandal:
+    name: "Сандал"
+    description: "Сын вождя"
+  koa:
+    name: "Коа"
+    description: "Чигу-ями"
+  dar_dar:
+    name: "Дар-дар"
+    description: "Уулдэр охотник"
+  tuskul:
+    name: "Тускул"
+    description: "Тахалец"
 
