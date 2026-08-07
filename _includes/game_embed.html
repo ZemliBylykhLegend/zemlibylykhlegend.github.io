@@ -1,0 +1,39 @@
+{%- comment -%}
+Embed for the Abba Godot web build.
+
+Usage:
+{% include game_embed.html %}
+
+Optional custom path:
+{% include game_embed.html game_path="/assets/game/index.html" %}
+{%- endcomment -%}
+
+{%- assign game_path = include.game_path | default: "/assets/game/index.html" -%}
+
+<div
+  class="abba-game-embed"
+  style="
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    aspect-ratio: 1280 / 800;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  "
+>
+  <iframe
+    src="{{ game_path | relative_url }}"
+    title="Abba"
+    loading="lazy"
+    allow="autoplay; fullscreen; gamepad"
+    style="
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    "
+  ></iframe>
+</div>
