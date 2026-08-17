@@ -1,18 +1,20 @@
 // vadhidek_craft.scss
 // Стили модуля крафта Вад-Хидека (адаптированы под Just The Docs & тёмную тему)
 
-$primary-color: $grey-dk-300;
-$secondary-color: $grey-dk-200;
-$card-bg: rgba(255, 255, 255, 0.05);
-$card-hover: rgba(255, 255, 255, 0.08);
-$text-color: $grey-lt-300;
-$text-muted: rgba(255, 255, 255, 0.6);
-$accent-color: #ffd700;
-$success-color: #4caf50;
-$danger-color: #ff6b6b;
-$info-color: #2196f3;
-$border-color: rgba(255, 255, 255, 0.12);
-$border-radius: 12px;
+@import "./custom/settings";
+
+$primary-color: $coal;
+$secondary-color: #241a11;
+$card-bg: rgba(234, 227, 214, 0.06);
+$card-hover: rgba(234, 227, 214, 0.1);
+$text-color: $bone;
+$text-muted: #b9ad9c;
+$accent-color: $ember;
+$success-color: #7fa06a;
+$danger-color: #c0604a;
+$info-color: #7fa3ad;
+$border-color: rgba(234, 227, 214, 0.14);
+$border-radius: 10px;
 $transition: 0.25s ease;
 
 .vadhidek-module {
@@ -77,7 +79,7 @@ $transition: 0.25s ease;
 
         &:hover {
           background: $accent-color;
-          color: #000;
+          color: $night;
         }
       }
     }
@@ -202,7 +204,7 @@ $transition: 0.25s ease;
 
         &:hover {
           background: $danger-color;
-          color: #fff;
+          color: $bone;
         }
       }
     }
@@ -237,7 +239,7 @@ $transition: 0.25s ease;
 
         .vadhidek-item-header h3 {
           margin: 0 0 0.5rem;
-          color: #fff;
+          color: $bone;
           font-size: 1.1rem;
         }
 
@@ -319,9 +321,9 @@ $transition: 0.25s ease;
       }
 
       .vadhidek-tier-novice {
-        background: #333;
-        color: #aaa;
-        border: 1px solid #444;
+        background: rgba(234, 227, 214, 0.08);
+        color: #b9ad9c;
+        border: 1px solid rgba(234, 227, 214, 0.15);
       }
 
       .vadhidek-tier-journeyman {
@@ -395,6 +397,7 @@ $transition: 0.25s ease;
         margin: 0 0 1rem 0;
         color: $accent-color;
         font-size: 1.2rem;
+        font-family: $display-font-family;
       }
 
       .vadhidek-ingredients-content {
@@ -474,7 +477,7 @@ $transition: 0.25s ease;
 
         .vadhidek-node-name {
           font-weight: 500;
-          color: #fff;
+          color: $bone;
         }
 
         .vadhidek-node-type {
@@ -565,7 +568,7 @@ $transition: 0.25s ease;
         }
 
         .vadhidek-material-name {
-          color: #fff;
+          color: $bone;
           font-weight: 500;
         }
 
@@ -591,13 +594,13 @@ $transition: 0.25s ease;
           border: none;
           border-radius: 4px;
           cursor: pointer;
-          color: #000;
+          color: $night;
           font-size: 0.8rem;
           transition: $transition;
 
           &:hover {
             transform: scale(1.05);
-            background: #ffcc00;
+            background: $ember-bright;
           }
         }
       }
@@ -618,10 +621,10 @@ $transition: 0.25s ease;
 
         &.vadhidek-btn-primary {
           background: $accent-color;
-          color: #000;
+          color: $night;
 
           &:hover {
-            background: #ffcc00;
+            background: $ember-bright;
             box-shadow: 0 4px 12px rgba($accent-color, 0.3);
           }
         }

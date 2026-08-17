@@ -1,0 +1,24 @@
+@use "../custom/settings" as s;
+
+$body-background-color: s.$chrome;   // было: clay-dark
+$sidebar-color:         s.$chrome;   // было: night
+$feedback-color:        s.$chrome;
+$search-background-color: s.$chrome-dark;
+
+$body-text-color: s.$bone;
+$body-heading-color: s.$bone;
+$nav-link-color: s.$ember;
+$nav-child-link-color: #cfc4b4;
+
+$link-color: s.$ember;
+$btn-primary-color: s.$ember-deep;
+$base-button-color: s.$coal;
+
+$border-color: #3a2e23;
+
+$search-background-color: s.$coal;
+$search-result-preview-color: #b9ad9c;
+
+$table-background-color: s.$hide;
+$code-background-color: s.$coal;
+$code-linenumber-color: #9c9285;

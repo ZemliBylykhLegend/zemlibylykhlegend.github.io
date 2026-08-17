@@ -1,12 +1,12 @@
-// creatures_card.scss
-$card-bg: rgba(30, 30, 40, 0.95);
-$card-border: rgba(255, 215, 0, 0.3);
-$card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-$text-primary: $grey-lt-300;
-$text-secondary: $grey-lt-200;
-$accent-gold: #ffd700;
-$accent-red: #ff6b6b;
-$accent-blue: #4ecdc4;
+// creatures_card.scss — ZBL · токены ember
+@import "./custom/settings";
+
+$card-bg: rgba(23, 18, 13, 0.96);
+$card-border: rgba(224, 138, 60, 0.35);
+$card-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+$card-text: #d8cdbd;   // текст на карточке
+$card-muted: #a89a86;  // приглушённый на карточке
+$type-color: #8fb2bc;  // frost на карточке
 $transition: all 0.3s ease;
 
 .creature-module-wrapper {
@@ -16,49 +16,31 @@ $transition: all 0.3s ease;
   margin: 1.5rem 0;
   width: 100%;
   align-items: flex-start;
+}
 
-  &.layout-right {
-    flex-direction: row;
-    .creature-card-container {
-      order: 2;
-      margin-left: auto;
-    }
-    .creature-text-content {
-      order: 1;
-      flex: 1;
-      min-width: 0;
-    }
-  }
+// Раскладки
+.creature-module-wrapper.layout-right {
+  flex-direction: row;
+  .creature-card-container { order: 2; margin-left: auto; }
+  .creature-text-content { order: 1; flex: 1; min-width: 0; }
+}
 
-  &.layout-left {
-    flex-direction: row;
-    .creature-card-container {
-      order: 1;
-      margin-right: auto;
-    }
-    .creature-text-content {
-      order: 2;
-      flex: 1;
-      min-width: 0;
-    }
-  }
+.creature-module-wrapper.layout-left {
+  flex-direction: row;
+  .creature-card-container { order: 1; margin-right: auto; }
+  .creature-text-content { order: 2; flex: 1; min-width: 0; }
+}
 
-  &.layout-top {
-    flex-direction: column;
-    .creature-card-container {
-      order: 1;
-      margin: 0 auto;
-    }
-    .creature-text-content {
-      order: 2;
-      width: 100%;
-    }
-  }
+.creature-module-wrapper.layout-top {
+  flex-direction: column;
+  .creature-card-container { order: 1; margin: 0 auto; }
+  .creature-text-content { order: 2; width: 100%; }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
+  .creature-module-wrapper {
     flex-direction: column !important;
-    .creature-card-container,
-    .creature-text-content {
+    .creature-card-container, .creature-text-content {
       order: unset !important;
       margin: 0 !important;
       width: 100%;
@@ -83,39 +65,29 @@ $transition: all 0.3s ease;
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-    border-color: $accent-gold;
+    border-color: $ember;
   }
 }
 
 .card-image {
   width: 100%;
   height: 200px;
-  background: linear-gradient(135deg, #8A887F, #6E6D66);
+  background: linear-gradient(135deg, $hide-shade, $hide-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: scale-down;
-    transition: transform 0.5s ease;
-  }
-  .image-placeholder {
-    color: $text-secondary;
-    font-size: 0.9rem;
-    text-align: center;
-    padding: 1rem;
-    opacity: 0.7;
-  }
+  img { width: 100%; height: 100%; object-fit: scale-down; transition: transform 0.5s ease; }
+  .image-placeholder { color: $card-muted; font-size: 0.9rem; text-align: center; padding: 1rem; opacity: 0.7; }
+
   .card-badge {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: $accent-red;
-    color: white;
+    background: $rust;
+    color: $bone;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.75rem;
@@ -124,16 +96,16 @@ $transition: all 0.3s ease;
   }
 }
 
-// ✅ Модификаторы фона
-.card-image--neutral { background: linear-gradient(135deg, #8A887F, #6E6D66); }
-.card-image--dark { background: $grey-dk-300; }
-.card-image--light { background: $grey-lt-300; }
-.card-image--black { background: #0a0a0a; }
-.card-image--blacktored { background: radial-gradient(circle at bottom left, rgba(255, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.85) 55%, rgba(0, 0, 0, 1) 60%);}
-.card-image--white { background: #f4f4f5; }
-.card-image--gold { background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05)); }
-.card-image--red { background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 107, 107, 0.05)); }
-.card-image--blue { background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(78, 205, 196, 0.05)); }
+// Модификаторы фона
+.card-image--neutral { background: linear-gradient(135deg, $hide-shade, $hide-dark); }
+.card-image--dark { background: $coal; }
+.card-image--light { background: $hide; }
+.card-image--black { background: $night; }
+.card-image--blacktored { background: radial-gradient(circle at bottom left, rgba(110, 58, 34, 0.25) 0%, rgba(11, 8, 6, 0.85) 55%, $night 60%); }
+.card-image--white { background: $bone; }
+.card-image--gold { background: linear-gradient(135deg, rgba(224, 138, 60, 0.2), rgba(224, 138, 60, 0.05)); }
+.card-image--red { background: linear-gradient(135deg, rgba(110, 58, 34, 0.25), rgba(110, 58, 34, 0.06)); }
+.card-image--blue { background: linear-gradient(135deg, rgba(174, 191, 198, 0.2), rgba(174, 191, 198, 0.06)); }
 
 .card-content {
   padding: 1rem;
@@ -141,40 +113,23 @@ $transition: all 0.3s ease;
   .card-title {
     margin: 0 0 0.5rem 0;
     font-size: 1.4rem;
-    color: $accent-gold;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    color: $ember;
+    font-family: $display-font-family;
+    border-bottom: 1px solid rgba(224, 138, 60, 0.25);
     padding-bottom: 0.5rem;
   }
 
-  .card-type {
-    font-size: 0.85rem;
-    color: $accent-blue;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-description {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: $text-secondary;
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
+  .card-type { font-size: 0.85rem; color: $type-color; font-style: italic; margin-bottom: 0.5rem; }
+  .card-description { font-size: 0.95rem; line-height: 1.5; color: $card-muted; margin-bottom: 1rem; font-style: italic; }
 }
 
 .card-stats {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
   padding: 0.75rem 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(234, 227, 214, 0.12);
+  border-bottom: 1px solid rgba(234, 227, 214, 0.12);
 
-  .stat-group {
-    margin-bottom: 0.75rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+  .stat-group { margin-bottom: 0.75rem; &:last-child { margin-bottom: 0; } }
 
   .stat-row {
     display: flex;
@@ -182,23 +137,11 @@ $transition: all 0.3s ease;
     padding: 0.25rem 0;
     font-size: 0.85rem;
 
-    &.full-width {
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .stat-label {
-      color: $text-secondary;
-      font-weight: 500;
-    }
-
-    .stat-value {
-      color: $accent-gold;
-      font-weight: 600;
-    }
+    &.full-width { flex-direction: column; gap: 0.25rem; }
+    .stat-label { color: $card-muted; font-weight: 500; }
+    .stat-value { color: $ember; font-weight: 600; }
   }
 
-  // Ability scores grid
   .ability-scores {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -206,8 +149,8 @@ $transition: all 0.3s ease;
     margin: 0.5rem 0;
 
     .ability-score {
-      background: rgba(255, 215, 0, 0.1);
-      border: 1px solid rgba(255, 215, 0, 0.2);
+      background: rgba(224, 138, 60, 0.12);
+      border: 1px solid rgba(224, 138, 60, 0.25);
       border-radius: 6px;
       padding: 0.5rem;
       text-align: center;
@@ -215,125 +158,85 @@ $transition: all 0.3s ease;
       flex-direction: column;
       gap: 0.25rem;
 
-      .ability-key {
-        font-size: 0.75rem;
-        color: $text-secondary;
-        font-weight: 600;
-      }
-
-      .ability-value {
-        font-size: 1rem;
-        color: $accent-gold;
-        font-weight: 700;
-      }
+      .ability-key { font-size: 0.75rem; color: $card-muted; font-weight: 600; }
+      .ability-value { font-size: 1rem; color: $ember; font-weight: 700; }
     }
   }
 
-  // Passives list
   .passives-list {
     margin-top: 0.25rem;
     padding-left: 1rem;
 
     .passive-item {
-      color: $text-secondary;
+      color: $card-muted;
       font-size: 0.85rem;
       line-height: 1.4;
       margin-bottom: 0.25rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+      &:last-child { margin-bottom: 0; }
     }
   }
 }
 
 .card-abilities {
   padding: 0.75rem 1rem;
-  background: rgba(255, 215, 0, 0.05);
-  border-top: 1px solid rgba(255, 215, 0, 0.1);
+  background: rgba(224, 138, 60, 0.06);
+  border-top: 1px solid rgba(224, 138, 60, 0.12);
 
   .ability-item {
     margin-bottom: 0.75rem;
     font-size: 0.85rem;
     line-height: 1.4;
-    color: $text-secondary;
+    color: $card-muted;
+    &:last-child { margin-bottom: 0; }
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    .ability-name {
-      color: $accent-gold;
-      font-weight: 600;
-    }
-
-    .ability-desc {
-      color: $text-secondary;
-    }
+    .ability-name { color: $ember; font-weight: 600; }
   }
 }
 
 .card-lore {
   padding: 0.75rem 1rem;
   font-size: 0.85rem;
-  color: $text-secondary;
-  background: rgba(78, 205, 196, 0.05);
-  border-top: 1px solid rgba(78, 205, 196, 0.1);
+  color: $card-muted;
+  background: rgba(174, 191, 198, 0.06);
+  border-top: 1px solid rgba(174, 191, 198, 0.12);
   line-height: 1.4;
 
-  &::before {
-    content: "📜 ";
-    margin-right: 0.25rem;
-  }
+  &::before { content: "📜 "; margin-right: 0.25rem; }
 }
 
 .creature-text-content {
-  color: $text-primary;
+  color: $ink;
   min-width: 0;
 
-  h1, h2, h3, h4, h5, h6 {
-    color: $accent-gold;
+  h1, h2, h3, h5, h6 {
+    color: $ink;
+    font-family: $display-font-family;
     margin-top: 0;
   }
 
-  p {
-    line-height: 1.6;
-    color: $text-secondary;
-  }
-
-  ul, ol {
-    color: $text-secondary;
-  }
-
-  blockquote {
-    border-left: 3px solid $accent-gold;
-    padding-left: 1rem;
-    color: $text-secondary;
-  }
-
-  // Actions sections styling
   h4 {
-    color: $accent-red;
+    color: $rust;
+    font-family: $display-font-family;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
     font-size: 1.1rem;
-    border-bottom: 1px solid rgba(255, 107, 107, 0.3);
+    border-bottom: 1px solid rgba(110, 58, 34, 0.35);
     padding-bottom: 0.25rem;
+  }
+
+  p, ul, ol { color: #4a3524; line-height: 1.6; }
+
+  blockquote {
+    border-left: 3px solid $rust;
+    padding-left: 1rem;
+    color: #4a3524;
   }
 
   .action-item, .bonus-item, .reaction-item {
     margin-bottom: 1rem;
     padding-left: 1rem;
-    border-left: 2px solid rgba(255, 215, 0, 0.3);
+    border-left: 2px solid rgba(156, 82, 16, 0.4);
 
-    strong {
-      color: $accent-gold;
-    }
-  }
-}
-
-[data-color-theme="dark"] .creature-module-wrapper {
-  .creature-card {
-    background: rgba(20, 20, 30, 0.98);
+    strong { color: $rust; }
   }
 }

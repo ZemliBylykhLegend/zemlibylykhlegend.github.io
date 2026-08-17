@@ -1,1 +1,9 @@
-// custom setup code goes here
+@use "settings" as s;
+
+$body-font-family: s.$serif-stack;      // книжный текст, ноль зависимостей
+$body-line-height: 1.5;
+$content-line-height: 1.7;              // читабельность на пергаменте
+$content-width: 55rem;                  // чуть шире под шкуру
+$nav-width: 17rem;
+$border-radius: 6px;
+$mono-font-family: s.$mono-stack;

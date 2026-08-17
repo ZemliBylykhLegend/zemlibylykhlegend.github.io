@@ -8,7 +8,7 @@ domain: zemlibylykhlegend.github.io       # if you want to force HTTPS, specify 
 url: https://zemlibylykhlegend.github.io  # the base hostname and protocol for your site, e.g. http://example.com
 github_username:  ZemliBylykhLegend
 
-color_scheme: reading
+color_scheme: ember
 
 sass:
   quiet_deps: true

@@ -1,0 +1,40 @@
+// ─────────────────────────────────────────────────────────────
+// ZBL · Многоразовые паттерны оформления
+// ─────────────────────────────────────────────────────────────
+@use "settings" as s;
+@use "textures" as t;
+
+// Пергаментная панель: шкура с рваной кромкой поверх дерева
+@mixin hide-panel {
+  background: t.hide-mottle() repeat;
+  border: s.$hide-border-width solid transparent;
+  border-image: t.hide-torn-edge() 40 round;
+  color: s.$ink;
+}
+
+// «Штамп» — двойная рамка, капитель (как «К СОДЕРЖАНИЮ»)
+@mixin stamp {
+  display: inline-block;
+  padding: 0.25em 0.9em;
+  border: 2px solid currentColor;
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+  font-family: s.$display-font-family;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+// Росчерк под заголовком
+@mixin flourish {
+  padding-bottom: 0.45em;
+  background: t.flourish() no-repeat left calc(100% - 0.1em) / 11em 0.55em;
+}
+
+// Доступное фокус-кольцо
+@mixin focus-ring($color: s.$frost) {
+  &:focus-visible {
+    outline: 2px solid $color;
+    outline-offset: 2px;
+  }
+}

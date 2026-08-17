@@ -1,1 +1,280 @@
-// custom SCSS (or CSS) goes here
+// ─────────────────────────────────────────────────────────────
+// ZBL · Компонентные оверрайды. Загружается последним.
+// ─────────────────────────────────────────────────────────────
+@import "settings";
+@import "mixins";
+@import "fonts";
+
+// Глина: зерно + пятна, бесшовная (stitchTiles)
+$clay-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='%2325251f'/%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.11 0 0 0 0 0.09 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23a)'/%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='4' seed='21' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.20 0 0 0 0 0.20 0 0 0 0 0.16 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23b)'/%3E%3C/svg%3E");
+
+// Шкура: бесшовная (добавлен stitchTiles в оба фильтра)
+$hide-mottle-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Crect width='240' height='240' fill='%23b7b0a6'/%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.38 0 0 0 0 0.33 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23f)'/%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.50 0 0 0 0 0.44 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23b)'/%3E%3C/svg%3E");
+
+$flourish-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='14' viewBox='0 0 220 14'%3E%3Cpath d='M3 9c40-6 80 4 118-2 34-5 66 2 96-2' fill='none' stroke='%23170d05' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+
+// [1] База
+body {
+  background: $clay-dark  repeat;
+}
+
+::selection {
+  background: $ember;
+  color: $night;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: $coal; }
+::-webkit-scrollbar-thumb {
+  background: $ember-deep;
+  border: 2px solid $coal;
+  border-radius: 5px;
+}
+
+a, button, input, summary, .nav-list-expander, .site-button {
+  @include focus-ring;
+}
+
+// [2] Сайдбар
+.side-bar {
+  background: $chrome;
+  border-right: 1px solid $chrome-dark;
+}
+
+.nav-list-link {
+  color: $ember;
+  font-family: $display-font-family;
+
+  &:hover { color: $ember-bright; }
+
+  &.active {
+    color: $ember-bright;
+    background: linear-gradient(90deg, rgba(224, 138, 60, 0.16), transparent 70%);
+    box-shadow: inset 3px 0 0 $ember;
+  }
+}
+
+.nav-list-item .nav-list-item .nav-list-link {
+  color: #cfc4b4;
+  font-family: $serif-stack;
+
+  &:hover { color: $ember-bright; }
+}
+
+.nav-list-expander { color: $frost; }
+
+// [3] Шапка и поиск
+.site-header {
+  background: $chrome;
+  border-bottom: 1px solid $chrome-dark;
+}
+
+.menu-button, .search-button, .site-button { color: $frost; }
+
+.search-input {
+  background: $chrome-dark;
+  color: $bone;
+  border: 1px solid #3a2e23;
+
+  &::placeholder { color: #8d8172; }
+
+  &:focus {
+    border-color: $ember;
+    box-shadow: 0 0 0 2px rgba(224, 138, 60, 0.25);
+    outline: none;
+  }
+}
+
+.search-results-wrap { background: $coal; }
+
+.search-result {
+  background: $coal;
+
+  &:hover, &.active { background: #241a11; }
+
+  .search-result-title { color: $ember; }
+  .search-result-preview { color: #b9ad9c; }
+}
+
+// [4] Пергаментная панель — векторная шкура
+.main-content-wrap {
+  background: $hide; // фолбэк, если border-image недоступен
+  border: $hide-border-width-sm solid transparent;
+  border-image-source: url("../images/theme/hide.svg");
+  border-image-slice: $hide-frame-slice fill;
+  border-image-repeat: round;
+  color: $ink;
+  margin: 0.75rem;
+
+  @media (min-width: 31.25rem) { margin: 1.25rem; }
+
+  @media (min-width: 50rem) {
+    border-width: $hide-border-width;
+    margin: $sp-6;
+  }
+}
+// [5] Типографика
+.main-content {
+  color: $ink;
+
+  h1, h2, h3, h4, h5, h6 {
+    color: $ink;
+    font-family: $display-font-family;
+  }
+
+  h1, h2 {
+    padding-bottom: 0.45em;
+    background: $flourish-bg no-repeat left calc(100% - 0.1em) / 11em 0.55em;
+  }
+
+  a:not(.btn) {
+    color: $ember-deep;
+    text-decoration: underline;
+    text-decoration-color: rgba(156, 82, 16, 0.45);
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: #7a3d0a;
+      text-decoration-color: currentColor;
+    }
+  }
+
+  ul li::marker { color: $rust; }
+  ol li::marker { color: $rust; font-weight: 600; }
+
+  hr {
+    background: #87857c;
+    border-top: 10px solid transparent;
+    border-image-source: $flourish-bg;
+    border-image-slice: 15;
+    border-image-repeat: stretch;
+  }
+
+  img {
+    border: 1px solid $hide-dark;
+    border-radius: 4px;
+  }
+
+  .anchor-heading {
+    color: $ember-deep;
+
+    .anchor-heading-svg { fill: currentColor; }
+  }
+}
+
+// [6] Таблицы
+.main-content .table-wrapper {
+  table { background: transparent; }
+
+  th {
+    background: $hide-shade;
+    color: $ink;
+    font-family: $display-font-family;
+    border: 1px solid $hide-dark;
+  }
+
+  td { border: 1px solid $hide-dark; }
+
+  tbody tr {
+    &:nth-child(even) { background: rgba(143, 136, 126, 0.25); }
+    &:hover { background: rgba(224, 138, 60, 0.12); }
+  }
+}
+
+// [7] Код
+.main-content {
+  code {
+    background: rgba(43, 29, 18, 0.12);
+    color: $rust;
+    border: 1px solid rgba(43, 29, 18, 0.2);
+    border-radius: 3px;
+  }
+
+  pre, .highlight {
+    background: $coal;
+    border: 1px solid #3a2e23;
+    border-radius: 6px;
+  }
+
+  pre code {
+    background: transparent;
+    color: $bone;
+    border: 0;
+  }
+}
+
+// [8] Кнопки
+.btn {
+  background: $coal;
+  color: $bone;
+  border: 1px solid #3a2e23;
+  font-family: $display-font-family;
+
+  &:hover {
+    background: #241a11;
+    color: $ember-bright;
+  }
+}
+
+.btn-primary {
+  background: $ember-deep;
+  border-color: $ember-deep;
+
+  &:hover { background: $ember; }
+}
+
+.label {
+  background: $rust;
+  color: $bone;
+  font-family: $display-font-family;
+  border-radius: 3px;
+}
+
+.stamp {
+  display: inline-block;
+  padding: 0.25em 0.9em;
+  border: 2px solid $rust;
+  outline: 1px solid $rust;
+  outline-offset: 3px;
+  font-family: $display-font-family;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+// [9] Цитаты
+.main-content blockquote {
+  background: rgba(143, 136, 126, 0.2);
+  border-left: 4px solid $rust;
+  border-radius: 0 4px 4px 0;
+  color: #4a3524;
+  padding: $sp-2 $sp-4;
+}
+
+div.opaque {
+  color: $bone;
+  border-radius: 6px;
+}
+
+// [10] Служебное
+.breadcrumb-nav {
+  background: transparent;
+  color: #5c4632;
+
+  a { color: $ember-deep; }
+}
+
+.site-footer {
+  color: #5c4632;
+  border-top: 15px solid transparent;
+  border-image-source: $flourish-bg;
+  border-image-slice: 15;
+  border-image-repeat: stretch;
+
+  a { color: $ember-deep; }
+}
+
+// [11] Адаптив
+@media (max-width: 31.25rem) {
+  .main-content-wrap { margin: 0.5rem; }
+}

@@ -1,0 +1,28 @@
+$night:        #0b0806;  // фон сайдбара, «сажа»
+$coal:         #17120d;  // панели/код на тёмном
+$ember:        #e08a3c;  // акцент, ссылки на тёмном
+$ember-bright: #f2a45b;  // hover / focus
+$ember-deep:   #9c5210;  // ссылки на пергаменте (≥ 4.5:1)
+$bone:         #eae3d6;  // светлый текст на тёмном
+$frost:        #aebfc6;  // холодный вторичный (фокус-кольца)
+$hide:         #b7b0a6;  // выделанная шкура
+$hide-shade:   #a79e8f;  // зебра-строк, шапки таблиц
+$hide-dark:    #8f887e;  // тени кромки, бордюры на шкуре
+$ink:          #2b1d12;  // чернильный текст на шкуре (≈ 7:1)
+$rust:         #6e3a22;  // акцентный текст на шкуре
+$clay-dark:    #25251F;
+
+$hide-border-width: 0.25rem; // было 2.5rem — рамка тонкая, как в оригинале
+
+$chrome:      #25251f; // сайдбар + шапка + поиск + фон страницы под шкурой
+$chrome-dark: #1a1a15; // бордюры и поле поиска на хроме
+
+// Шрифтовые стеки
+$display-font-family: "Shantell Sans", "Segoe UI", system-ui, sans-serif;
+$serif-stack: Georgia, "PT Serif", "Noto Serif", "Times New Roman", serif;
+$mono-stack: ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+// Геометрия пергамента
+$hide-border-width: 4rem; // глубина рваной кромки на десктопе
+$hide-border-width-sm: 2rem; // мобильная кромка
+$hide-frame-slice: 140; // ширина рваной зоны в единицах исходника (1364×769)
