@@ -66,7 +66,7 @@ a, button, input, summary, .nav-list-expander, .site-button {
 // [3] Шапка и поиск
 .site-header {
   background: $chrome;
-  border-bottom: 1px solid $chrome-dark;
+  border-bottom: none
 }
 
 .menu-button, .search-button, .site-button { color: $frost; }
@@ -264,14 +264,20 @@ div.opaque {
   a { color: $ember-deep; }
 }
 
+.main-header{
+  border: none;
+}
+
 .site-footer {
   color: #5c4632;
-  border-top: 15px solid transparent;
-  border-image-source: $flourish-bg;
-  border-image-slice: 15;
-  border-image-repeat: stretch;
+  border-top: none;
 
   a { color: $ember-deep; }
+}
+
+.site-nav {
+  color: #5c4632;
+  border-right: none;
 }
 
 // [11] Адаптив
