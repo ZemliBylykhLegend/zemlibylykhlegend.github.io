@@ -122,6 +122,7 @@ a, button, input, summary, .nav-list-expander, .site-button {
     font-family: $display-font-family;
   }
 
+
   h1, h2 {
     padding-bottom: 0.45em;
     background: $flourish-bg no-repeat left calc(100% - 0.1em) / 11em 0.55em;
@@ -138,9 +139,6 @@ a, button, input, summary, .nav-list-expander, .site-button {
       text-decoration-color: currentColor;
     }
   }
-
-  ul li::marker { color: $rust; }
-  ol li::marker { color: $rust; font-weight: 600; }
 
   hr {
     background: #87857c;
@@ -159,6 +157,14 @@ a, button, input, summary, .nav-list-expander, .site-button {
     color: $ember-deep;
 
     .anchor-heading-svg { fill: currentColor; }
+  }
+}
+
+.main-content-wrap .main-content main {
+  color: $ink;
+
+  li::before {
+    color: $chrome;
   }
 }
 
